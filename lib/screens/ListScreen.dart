@@ -1,5 +1,4 @@
 import 'package:dima_project/screens/CompletedScreen.dart';
-import 'package:dima_project/screens/MyListScreen.dart';
 import 'package:dima_project/screens/WatchingScreen.dart';
 import 'package:dima_project/screens/WishlistScreen.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class _ListScreenState extends State<ListScreen> {
       // initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Meals'),
+          title: Text('My List'),
           bottom: TabBar(
             tabs: <Widget>[
               Tab(

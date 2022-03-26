@@ -1,8 +1,7 @@
-import 'package:dima_project/screens/ListScreen.dart';
-import 'package:dima_project/screens/SearchScreen.dart';
 import 'package:flutter/material.dart';
 
-import 'screens/MyListScreen.dart';
+import 'package:dima_project/screens/SearchScreen.dart';
+import 'package:dima_project/screens/ListScreen.dart';
 
 void main() {
   runApp(const MyApp());
