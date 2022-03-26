@@ -1,8 +1,9 @@
+import 'package:dima_project/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import './screens/search_screen.dart';
-import './screens/list_screen.dart';
+import 'screens/home_screen.dart';
 import './model/series.dart';
 
 void main() {
@@ -35,6 +36,7 @@ class MyApp extends StatelessWidget {
         initialRoute: '/',
         routes: {
           SearchScreen.routeName: (ctx) => SearchScreen(),
+          DetailsScreen.routeName: (ctx) => DetailsScreen(),
         },
       ),
     );
