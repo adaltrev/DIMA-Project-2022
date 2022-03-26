@@ -20,8 +20,8 @@ class _ListScreenState extends State<ListScreen> {
       // initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('My List'),
-          bottom: TabBar(
+          title: const Text('My List'),
+          bottom: const TabBar(
             tabs: <Widget>[
               Tab(
                 text: 'Watching',
@@ -36,7 +36,7 @@ class _ListScreenState extends State<ListScreen> {
           ),
         ),
         drawer: MainDrawer(),
-        body: TabBarView(
+        body: const TabBarView(
           children: <Widget>[
             WatchingScreen(),
             CompletedScreen(),

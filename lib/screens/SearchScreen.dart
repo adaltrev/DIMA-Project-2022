@@ -1,10 +1,13 @@
+import 'package:dima_project/model/Serie.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../model/Categories.dart';
+import '../model/Series.dart';
 import '../widgets/MainDrawer.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
-
+  SearchScreen({Key? key}) : super(key: key);
   static const routeName = '/search';
 
   @override
@@ -14,11 +17,26 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
+    Serie DUMMY_SERIE = Serie(
+        "Hunter x Hunter",
+        "1999",
+        "Duis magna amet irure eu ullamco culpa id est elit qui. Cillum eiusmod sint ea esse est aute. Nostrud amet voluptate elit non pariatur eu consequat dolore. Consequat officia ipsum cupidatat cillum commodo mollit in consectetur non aliqua consectetur ipsum.",
+        Categories.watching,
+        "https://www.animeclick.it/immagini/anime/Hunter_x_Hunter_2011/cover/Hunter_x_Hunter_2011-cover.jpg");
+
+    final series = Provider.of<Series>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text("Search screen"),
       ),
       drawer: MainDrawer(),
+      body: Container(
+        alignment: Alignment.center,
+        child: TextButton(
+          child: Text("Add a serie"),
+          onPressed: () => series.addSerie(DUMMY_SERIE),
+        ),
+      ),
     );
   }
 }
