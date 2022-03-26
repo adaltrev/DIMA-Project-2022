@@ -1,3 +1,4 @@
+import 'package:dima_project/screens/ListScreen.dart';
 import 'package:dima_project/screens/SearchScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -27,7 +28,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: const MyListScreen(),
+      home: const ListScreen(),
       initialRoute: '/',
       routes: {
         SearchScreen.routeName: (ctx) => const SearchScreen(),
