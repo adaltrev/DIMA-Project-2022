@@ -1,6 +1,6 @@
-import 'package:dima_project/screens/SearchScreen.dart';
-
 import 'package:flutter/material.dart';
+
+import '../screens/search_screen.dart';
 
 class MainDrawer extends StatelessWidget {
   Widget buildListTile(String title, VoidCallback tapHandler) {

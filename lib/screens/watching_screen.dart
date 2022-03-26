@@ -1,21 +1,21 @@
-import 'package:dima_project/model/Series.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../model/series.dart';
 import '../widgets/list_item.dart';
 
-class CompletedScreen extends StatefulWidget {
-  const CompletedScreen({Key? key}) : super(key: key);
+class WatchingScreen extends StatefulWidget {
+  const WatchingScreen({Key? key}) : super(key: key);
 
   @override
-  State<CompletedScreen> createState() => _CompletedScreenState();
+  State<WatchingScreen> createState() => _WatchingScreenState();
 }
 
-class _CompletedScreenState extends State<CompletedScreen> {
+class _WatchingScreenState extends State<WatchingScreen> {
   @override
   Widget build(BuildContext context) {
     final series = Provider.of<Series>(context);
-    final completed = series.completedSeries;
+    final completed = series.watchingSeries;
 
     return Container(
       alignment: Alignment.center,

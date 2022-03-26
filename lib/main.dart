@@ -1,9 +1,9 @@
-import 'package:dima_project/model/Series.dart';
 import 'package:flutter/material.dart';
-
-import 'package:dima_project/screens/SearchScreen.dart';
-import 'package:dima_project/screens/ListScreen.dart';
 import 'package:provider/provider.dart';
+
+import './screens/search_screen.dart';
+import './screens/list_screen.dart';
+import './model/series.dart';
 
 void main() {
   runApp(const MyApp());

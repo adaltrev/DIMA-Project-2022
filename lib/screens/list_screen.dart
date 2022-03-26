@@ -1,9 +1,9 @@
-import 'package:dima_project/screens/CompletedScreen.dart';
-import 'package:dima_project/screens/WatchingScreen.dart';
-import 'package:dima_project/screens/WishlistScreen.dart';
 import 'package:flutter/material.dart';
 
-import '../widgets/MainDrawer.dart';
+import './completed_screen.dart';
+import './wishlist_screen.dart';
+import './watching_screen.dart';
+import '../widgets/main_drawer.dart';
 
 class ListScreen extends StatefulWidget {
   const ListScreen({Key? key}) : super(key: key);

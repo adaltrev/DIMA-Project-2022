@@ -1,10 +1,10 @@
-import 'package:dima_project/model/Serie.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../model/Categories.dart';
-import '../model/Series.dart';
-import '../widgets/MainDrawer.dart';
+import '../model/serie.dart';
+import '../model/categories.dart';
+import '../model/series.dart';
+import '../widgets/main_drawer.dart';
 
 class SearchScreen extends StatefulWidget {
   SearchScreen({Key? key}) : super(key: key);

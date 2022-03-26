@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../model/Serie.dart';
+import '../model/serie.dart';
 
 class ListItem extends StatelessWidget {
   final Serie serie;

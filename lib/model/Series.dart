@@ -1,7 +1,7 @@
-import 'package:dima_project/model/Categories.dart';
-import 'package:dima_project/model/Serie.dart';
 import 'package:flutter/cupertino.dart';
-import "./Serie.dart";
+
+import './categories.dart';
+import './serie.dart';
 
 class Series extends ChangeNotifier {
   final List<Serie> _series = [

@@ -1,4 +1,4 @@
-import 'package:dima_project/model/Categories.dart';
+import './categories.dart';
 
 class Serie {
   final String title;

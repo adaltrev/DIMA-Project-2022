@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../model/Series.dart';
+import '../model/series.dart';
 import '../widgets/list_item.dart';
 
-class WishlistScreen extends StatefulWidget {
-  const WishlistScreen({Key? key}) : super(key: key);
+class CompletedScreen extends StatefulWidget {
+  const CompletedScreen({Key? key}) : super(key: key);
 
   @override
-  State<WishlistScreen> createState() => _WishlistScreenState();
+  State<CompletedScreen> createState() => _CompletedScreenState();
 }
 
-class _WishlistScreenState extends State<WishlistScreen> {
+class _CompletedScreenState extends State<CompletedScreen> {
   @override
   Widget build(BuildContext context) {
     final series = Provider.of<Series>(context);
-    final completed = series.wishlistSeries;
+    final completed = series.completedSeries;
 
     return Container(
       alignment: Alignment.center,
