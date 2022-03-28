@@ -10,6 +10,7 @@ class Tv {
   final String status;
   final int totalSeasons;
   final int totalEpisodes;
+  final List seasons;
 
   Tv(
     this.id,
@@ -23,5 +24,6 @@ class Tv {
     this.status,
     this.totalSeasons,
     this.totalEpisodes,
+    this.seasons,
   );
 }
