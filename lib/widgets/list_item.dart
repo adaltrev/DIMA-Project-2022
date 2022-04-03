@@ -22,12 +22,12 @@ class ListItem extends StatelessWidget {
       child: Card(
         child: ListTile(
           leading: CachedNetworkImage(
-            imageUrl: "http://image.tmdb.org/t/p/w342" + serie.imgUrl,
+            imageUrl: "http://image.tmdb.org/t/p/w342" + serie.posterPath,
             placeholder: (context, url) => CircularProgressIndicator(),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
-          title: Text(serie.title),
-          subtitle: Text(serie.year),
+          title: Text(serie.name),
+          subtitle: Text(serie.beginDate),
         ),
       ),
     );

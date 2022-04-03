@@ -16,18 +16,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
   Widget build(BuildContext context) {
     final serie = ModalRoute.of(context)!.settings.arguments as Serie;
     return Scaffold(
-      appBar: AppBar(title: Text(serie.title)),
+      appBar: AppBar(title: Text(serie.name)),
       body: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             CachedNetworkImage(
-              imageUrl: "http://image.tmdb.org/t/p/w342" + serie.imgUrl,
+              imageUrl: "http://image.tmdb.org/t/p/w342" + serie.posterPath,
               placeholder: (context, url) => CircularProgressIndicator(),
               errorWidget: (context, url, error) => Icon(Icons.error),
             ),
             Text(
-              serie.description,
+              serie.overview,
             )
           ]),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../model/season.dart';
 import '../model/serie.dart';
 import '../model/categories.dart';
 import '../model/series.dart';
@@ -19,11 +20,18 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     //TODO remove
     Serie DUMMY_SERIE = Serie(
-        "Hunter x Hunter",
-        "1999",
-        "Duis magna amet irure eu ullamco culpa id est elit qui. Cillum eiusmod sint ea esse est aute. Nostrud amet voluptate elit non pariatur eu consequat dolore. Consequat officia ipsum cupidatat cillum commodo mollit in consectetur non aliqua consectetur ipsum.",
-        Categories.watching,
-        "/tolQj5yffSxkEGXusPwNcvYrbph.jpg");
+        id: 7777,
+        name: "Hunter x Hunter",
+        beginDate: "1999",
+        overview:
+            "Duis magna amet irure eu ullamco culpa id est elit qui. Cillum eiusmod sint ea esse est aute. Nostrud amet voluptate elit non pariatur eu consequat dolore. Consequat officia ipsum cupidatat cillum commodo mollit in consectetur non aliqua consectetur ipsum.",
+        category: Categories.watching,
+        posterPath: "/tolQj5yffSxkEGXusPwNcvYrbph.jpg",
+        seasons: [
+          Season(number: 1, posterPath: "", airDate: "21/45/45", episodes: 15),
+          Season(
+              number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
+        ]);
 
     final series = Provider.of<Series>(context);
     return Scaffold(
