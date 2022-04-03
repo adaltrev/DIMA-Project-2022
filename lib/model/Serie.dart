@@ -21,6 +21,7 @@ class Serie {
       {required this.id,
       required this.name,
       required this.posterPath,
+      //deafault data to make dummy data easier to write
       this.genre = "fantasy",
       this.country = "italy",
       this.overview = "bello da vedere",

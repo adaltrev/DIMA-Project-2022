@@ -1,8 +1,7 @@
 import 'package:dima_project/model/TvSearch.dart';
-import 'package:dima_project/model/TvSeason.dart';
+import 'package:dima_project/model/season.dart';
+import 'package:dima_project/model/serie.dart';
 
-import './model/Tv.dart';
-import './model/TvSeason.dart';
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 
@@ -19,27 +18,30 @@ findById(String id) async {
       endPoint + "tv/" + id + "?api_key=" + apiKey + "&language=en-US"));
   dynamic body = json.decode(response.body);
 
-  List<TvSeason> seasons = <TvSeason>[];
+  List<Season> seasons = <Season>[];
   for (var item in body['seasons']) {
     if (item['season_number'] > 0) {
-      seasons.add(TvSeason(item['season_number'], item['poster_path'],
-          item['air_date'], item['episode_count']));
+      seasons.add(Season(
+          number: item['season_number'],
+          posterPath: item['poster_path'],
+          airDate: item['air_date'],
+          episodes: item['episode_count']));
     }
   }
 
-  return Tv(
-      body['id'],
-      body['name'],
-      body['poster_path'],
-      body['genres'][0]['name'],
-      body['origin_country'][0],
-      body['overview'],
-      body['first_air_date'],
-      body['last_air_date'],
-      body['status'],
-      body['number_of_seasons'],
-      body['number_of_episodes'],
-      seasons);
+  return Serie(
+      id: body['id'],
+      name: body['name'],
+      posterPath: body['poster_path'],
+      genre: body['genres'][0]['name'],
+      country: body['origin_country'][0],
+      overview: body['overview'],
+      beginDate: body['first_air_date'],
+      endDate: body['last_air_date'],
+      status: body['status'],
+      totalSeasons: body['number_of_seasons'],
+      totalEpisodes: body['number_of_episodes'],
+      seasons: seasons);
 }
 
 //Given a search query, fetch Themoviedb.org and return simple data for each result
