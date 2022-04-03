@@ -15,12 +15,12 @@ class _WishlistScreenState extends State<WishlistScreen> {
   @override
   Widget build(BuildContext context) {
     final series = Provider.of<Series>(context);
-    final completed = series.wishlistSeries;
+    final wishlist = series.wishlistSeries;
 
     return Container(
       alignment: Alignment.center,
       child: ListView(children: [
-        ...completed.map((serie) {
+        ...wishlist.map((serie) {
           return ListItem(serie);
         }).toList()
       ]),

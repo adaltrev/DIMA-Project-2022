@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
 import '../model/serie.dart';
@@ -20,10 +21,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.network(
-              serie.imgUrl,
-              height: 400,
-              fit: BoxFit.fitHeight,
+            CachedNetworkImage(
+              imageUrl: "http://image.tmdb.org/t/p/w342" + serie.imgUrl,
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
             ),
             Text(
               serie.description,

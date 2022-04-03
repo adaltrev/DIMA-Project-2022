@@ -7,7 +7,7 @@ import '../model/series.dart';
 import '../widgets/main_drawer.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
   static const routeName = '/search';
 
   @override
@@ -17,12 +17,13 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   @override
   Widget build(BuildContext context) {
+    //TODO remove
     Serie DUMMY_SERIE = Serie(
         "Hunter x Hunter",
         "1999",
         "Duis magna amet irure eu ullamco culpa id est elit qui. Cillum eiusmod sint ea esse est aute. Nostrud amet voluptate elit non pariatur eu consequat dolore. Consequat officia ipsum cupidatat cillum commodo mollit in consectetur non aliqua consectetur ipsum.",
         Categories.watching,
-        "https://www.animeclick.it/immagini/anime/Hunter_x_Hunter_2011/cover/Hunter_x_Hunter_2011-cover.jpg");
+        "/tolQj5yffSxkEGXusPwNcvYrbph.jpg");
 
     final series = Provider.of<Series>(context);
     return Scaffold(

@@ -1,12 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/serie.dart';
 
 class ListItem extends StatelessWidget {
+  const ListItem(this.serie, {Key? key}) : super(key: key);
+
   final Serie serie;
 
-  const ListItem(this.serie, {Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -19,7 +21,11 @@ class ListItem extends StatelessWidget {
       },
       child: Card(
         child: ListTile(
-          leading: Image.network(serie.imgUrl),
+          leading: CachedNetworkImage(
+            imageUrl: "http://image.tmdb.org/t/p/w342" + serie.imgUrl,
+            placeholder: (context, url) => CircularProgressIndicator(),
+            errorWidget: (context, url, error) => Icon(Icons.error),
+          ),
           title: Text(serie.title),
           subtitle: Text(serie.year),
         ),
