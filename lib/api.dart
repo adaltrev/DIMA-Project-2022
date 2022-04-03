@@ -1,4 +1,4 @@
-import 'package:dima_project/model/TvSearch.dart';
+import 'package:dima_project/model/tv_search.dart';
 import 'package:dima_project/model/season.dart';
 import 'package:dima_project/model/serie.dart';
 
