@@ -63,17 +63,21 @@ searchByName(String query) async {
 
   while (true) {
     for (var item in body['results']) {
+      if (item['poster_path'] == null) {
+        item['poster_path'] = "";
+      }
       results.add(TvSearch(item['id'], item['poster_path'], item['name']));
     }
 
     if (body['page'] == body['total_pages']) {
       return results;
     } else {
+      int next = body['page'] + 1;
       response = await http.get(Uri.parse(endPoint +
           "search/tv/?api_key=" +
           apiKey +
           "&language=en-US&page=" +
-          (body['page'] + 1) +
+          next.toString() +
           "&query=" +
           query +
           "&include_adult=false"));
