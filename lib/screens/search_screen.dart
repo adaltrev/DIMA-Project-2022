@@ -1,3 +1,8 @@
+import 'dart:ffi';
+import 'package:http/http.dart' as http;
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dima_project/model/tv_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -6,6 +11,7 @@ import '../model/serie.dart';
 import '../model/categories.dart';
 import '../model/series.dart';
 import '../widgets/main_drawer.dart';
+import '../api.dart';
 
 class SearchScreen extends StatefulWidget {
   const SearchScreen({Key? key}) : super(key: key);
@@ -16,9 +22,29 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  List<Result> _results = [];
+  String _query = "";
+
+  void _updateSearch() async {
+    List<TvSearch> jsonResults = await searchByName(_query);
+    List<Result> results = [];
+    for (var item in jsonResults) {
+      results.add(Result(id: item.id, posterPath: item.posterPath));
+    }
+    setState(() {
+      _results = results;
+    });
+  }
+  /*@override
+  void initState() {
+    super.initState();
+    //searchByName("Breaking");
+    findById("1396");
+  }*/
+
   @override
   Widget build(BuildContext context) {
-    //TODO remove
+    /*TODO remove
     Serie DUMMY_SERIE = Serie(
         id: 7777,
         name: "Hunter x Hunter",
@@ -31,21 +57,75 @@ class _SearchScreenState extends State<SearchScreen> {
           Season(number: 1, posterPath: "", airDate: "21/45/45", episodes: 15),
           Season(
               number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
-        ]);
+        ]);*/
 
     final series = Provider.of<Series>(context);
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Search screen"),
-      ),
-      drawer: MainDrawer(),
-      body: Container(
+        appBar: AppBar(
+          title: const Text("Search screen"),
+        ),
+        drawer: const MainDrawer(),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Expanded(
+                    child: TextField(
+                        textAlign: TextAlign.start,
+                        onChanged: (x) => _query = x,
+                        style: const TextStyle(
+                          fontSize: 18,
+                          color: Colors.black,
+                          fontWeight: FontWeight.w200,
+                        ))),
+                IconButton(
+                  onPressed: _updateSearch,
+                  icon: const Icon(Icons.search),
+                  tooltip: 'Search TV series',
+                )
+              ],
+            ),
+            Expanded(
+              child: GridView.count(
+                crossAxisCount: 2,
+                mainAxisSpacing: 20,
+                crossAxisSpacing: 20,
+                children: _results,
+              ),
+            )
+          ],
+        )
+
+        /*body: Container(
         alignment: Alignment.center,
         child: TextButton(
-          child: Text("Add a serie"),
+          child: const Text("Add a serie"),
           onPressed: () => series.addSerie(DUMMY_SERIE),
         ),
-      ),
+      ),*/
+        );
+  }
+}
+
+class Result extends StatelessWidget {
+  const Result({Key? key, required this.id, required this.posterPath})
+      : super(key: key);
+
+  final String posterPath;
+  final int id;
+
+  @override
+  Widget build(BuildContext context) {
+    return CachedNetworkImage(
+      imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
+      placeholder: (context, url) => const CircularProgressIndicator(),
+      errorWidget: (context, url, error) => const Icon(Icons.error),
     );
   }
 }
