@@ -1,4 +1,5 @@
 import 'package:dima_project/screens/details_screen.dart';
+import 'package:dima_project/screens/watching_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
         routes: {
           SearchScreen.routeName: (ctx) => SearchScreen(),
           DetailsScreen.routeName: (ctx) => DetailsScreen(),
+          WatchingDetailsScreen.routeName: (ctx) => WatchingDetailsScreen()
         },
       ),
     );

@@ -11,4 +11,8 @@ class Season {
       required this.airDate,
       required this.episodes,
       this.watched = 0});
+
+  bool completed() {
+    return episodes == watched ? true : false;
+  }
 }

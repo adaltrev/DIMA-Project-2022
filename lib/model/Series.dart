@@ -72,9 +72,44 @@ class Series extends ChangeNotifier {
         category: Categories.watching,
         posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
         seasons: [
-          Season(number: 1, posterPath: "", airDate: "21/45/45", episodes: 15),
           Season(
-              number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
+              number: 1,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/45",
+              episodes: 11,
+              watched: 11),
+          Season(
+              number: 2,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 12,
+              watched: 12),
+          Season(
+              number: 3,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 13,
+              watched: 13),
+          Season(
+              number: 4,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 14),
+          Season(
+              number: 5,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 15),
+          Season(
+              number: 6,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 16),
+          Season(
+              number: 7,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 17),
         ]),
     Serie(
         id: 84,

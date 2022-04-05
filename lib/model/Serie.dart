@@ -32,4 +32,17 @@ class Serie {
       this.totalEpisodes = 25,
       this.category = Categories.watching,
       required this.seasons});
+
+  int currentlyWatching() {
+    int i = 0;
+    for (var season in seasons) {
+      if (!season.completed()) {
+        return i;
+      } else {
+        i++;
+      }
+    }
+
+    return 0;
+  }
 }

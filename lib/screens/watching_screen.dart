@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 
 import '../model/series.dart';
 import '../widgets/list_item.dart';
+import '../widgets/watching_list_item.dart';
 
 class WatchingScreen extends StatefulWidget {
   const WatchingScreen({Key? key}) : super(key: key);
@@ -21,7 +22,7 @@ class _WatchingScreenState extends State<WatchingScreen> {
       alignment: Alignment.center,
       child: ListView(children: [
         ...completed.map((serie) {
-          return ListItem(serie);
+          return WatchingListItem(serie);
         }).toList()
       ]),
     );
