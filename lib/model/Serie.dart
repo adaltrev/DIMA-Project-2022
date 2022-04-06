@@ -28,12 +28,13 @@ class Serie {
       this.beginDate = "01/01/2001",
       this.endDate = "22/05/2022",
       this.status = "in progress",
-      this.totalSeasons = 1,
+      this.totalSeasons = 7,
       this.totalEpisodes = 25,
       this.category = Categories.watching,
       required this.seasons});
 
-  int currentlyWatching() {
+  //return the season we are currently watching
+  int currentlyWatchingSeason() {
     int i = 0;
     for (var season in seasons) {
       if (!season.completed()) {
@@ -44,5 +45,62 @@ class Serie {
     }
 
     return 0;
+  }
+
+  seasonWatchingEpisode(int seasonNumber) {
+    return seasons.elementAt(seasonNumber).watched;
+  }
+
+  seasonTotalEpisodes(int seasonNumber) {
+    return seasons.elementAt(seasonNumber).episodes;
+  }
+
+  //add episodes to season and return the index of the card that should be selected
+  addEpisodes(int selectedCardIndex, int quantity) {
+    Season selectedSeason = seasons.elementAt(selectedCardIndex);
+    //if I have selected the season I'm currently watching
+    if (selectedCardIndex == currentlyWatchingSeason()) {
+      selectedSeason.watched += quantity;
+      //if i've watched all the episodes
+      if (selectedSeason.watched >= selectedSeason.episodes) {
+        selectedSeason.watched = selectedSeason.episodes;
+        //if I'm not in the last season return index of the next season otherwise return the last season
+        int increment = selectedSeason.number < totalSeasons ? 1 : 0;
+        return selectedCardIndex + increment;
+        //if I go lower than 0 for episodes
+      } else if (selectedSeason.watched < 0) {
+        selectedSeason.watched = 0;
+        int decrement = selectedSeason.number > 1 ? 1 : 0;
+        return selectedCardIndex - decrement;
+      } else {
+        return selectedCardIndex;
+      }
+    } else {
+      //if the sesaon is complete and I want to decrement
+      if (selectedSeason.completed() && quantity < 0) {
+        selectedSeason.watched += quantity;
+        emptySeasons(selectedCardIndex);
+      } else if (!selectedSeason.completed() && quantity > 0) {
+        selectedSeason.watched += quantity;
+        completeSeasons(selectedCardIndex);
+      }
+      return selectedCardIndex;
+    }
+  }
+
+  void emptySeasons(int selectedCardIndex) {
+    seasons.asMap().forEach((index, season) {
+      if (index > selectedCardIndex) {
+        season.empty();
+      }
+    });
+  }
+
+  void completeSeasons(int selectedCardIndex) {
+    seasons.asMap().forEach((index, season) {
+      if (index < selectedCardIndex) {
+        season.complete();
+      }
+    });
   }
 }

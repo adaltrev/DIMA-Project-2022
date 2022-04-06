@@ -15,4 +15,12 @@ class Season {
   bool completed() {
     return episodes == watched ? true : false;
   }
+
+  void empty() {
+    watched = 0;
+  }
+
+  void complete() {
+    watched = episodes;
+  }
 }

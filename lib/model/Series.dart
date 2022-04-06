@@ -71,6 +71,7 @@ class Series extends ChangeNotifier {
             "Deserunt reprehenderit irure culpa enim quis. Veniam excepteur laborum dolor elit consequat anim eiusmod ex nostrud deserunt cupidatat. Reprehenderit ex irure magna et nostrud cillum. Consectetur qui in velit velit ea esse irure incididunt ut est dolor dolore.",
         category: Categories.watching,
         posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+        totalSeasons: 7,
         seasons: [
           Season(
               number: 1,

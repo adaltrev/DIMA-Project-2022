@@ -22,11 +22,17 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
     });
   }
 
+  addEpisode(Serie serie, int quantity) {
+    setState(() {
+      selectedCard = serie.addEpisodes(selectedCard, quantity);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final serie = ModalRoute.of(context)!.settings.arguments as Serie;
     if (firstBuild) {
-      updateSelectedCard(serie.currentlyWatching());
+      updateSelectedCard(serie.currentlyWatchingSeason());
       firstBuild = false;
     }
     return Scaffold(
@@ -92,7 +98,52 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
             ),
           ),
           const Spacer(),
-          Text("currently watching " + serie.currentlyWatching().toString()),
+          Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () => addEpisode(serie, -5),
+                  icon: Icon(
+                    Icons.keyboard_double_arrow_left_sharp,
+                    color: Colors.black,
+                    size: 45,
+                  )),
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () => addEpisode(serie, -1),
+                  icon: Icon(
+                    Icons.keyboard_arrow_left_rounded,
+                    color: Colors.black,
+                    size: 45,
+                  )),
+              Text(
+                serie.seasonWatchingEpisode(selectedCard).toString() +
+                    "/" +
+                    serie.seasonTotalEpisodes(selectedCard).toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () => addEpisode(serie, 1),
+                  icon: Icon(
+                    Icons.keyboard_arrow_right_sharp,
+                    color: Colors.black,
+                    size: 45,
+                  )),
+              IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: () => addEpisode(serie, 5),
+                  icon: Icon(
+                    Icons.keyboard_double_arrow_right_sharp,
+                    color: Colors.black,
+                    size: 45,
+                  ))
+            ],
+          ),
+          Text("currently watching " +
+              serie.currentlyWatchingSeason().toString()),
           Text("selected $selectedCard"),
           SizedBox(
             height: 20,
