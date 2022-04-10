@@ -1,6 +1,6 @@
 import 'package:dima_project/model/tv_search.dart';
 import 'package:dima_project/model/season.dart';
-import 'package:dima_project/model/serie.dart';
+import 'package:dima_project/model/Serie.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;
@@ -22,6 +22,9 @@ findById(String id) async {
   List<Season> seasons = <Season>[];
   for (var item in body['seasons']) {
     if (item['season_number'] > 0) {
+      if (item['poster_path'] == null) {
+        item['poster_path'] = "";
+      }
       seasons.add(Season(
           number: item['season_number'],
           posterPath: item['poster_path'],
@@ -64,10 +67,9 @@ searchByName(String query) async {
 
   while (true) {
     for (var item in body['results']) {
-      if (item['poster_path'] == null) {
-        item['poster_path'] = "";
+      if (item['poster_path'] != null) {
+        results.add(TvSearch(item['id'], item['poster_path'], item['name']));
       }
-      results.add(TvSearch(item['id'], item['poster_path'], item['name']));
     }
 
     if (body['page'] == body['total_pages']) {

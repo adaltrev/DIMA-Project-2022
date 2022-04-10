@@ -39,7 +39,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
       appBar: AppBar(title: Text(serie.name)),
       body: Column(
         children: [
-          Text("Seasons"),
+          const Text("Seasons"),
           Container(
             height: 350,
             child: GridView.count(
@@ -68,12 +68,13 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                                   imageUrl: "http://image.tmdb.org/t/p/w185" +
                                       season.posterPath,
                                   placeholder: (context, url) =>
-                                      CircularProgressIndicator(),
+                                      const CircularProgressIndicator(),
                                   errorWidget: (context, url, error) =>
-                                      Icon(Icons.error),
+                                      const Icon(Icons.error),
                                 ),
                                 Text("Season $index",
-                                    style: TextStyle(color: Colors.white)),
+                                    style:
+                                        const TextStyle(color: Colors.white)),
                               ]),
                           if (season.completed()) ...[
                             Center(
@@ -81,7 +82,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                                 color: Colors.black38,
                               ),
                             ),
-                            Center(
+                            const Center(
                               child: Icon(
                                 Icons.check_circle_sharp,
                                 color: Colors.green,
@@ -105,7 +106,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => addEpisode(serie, -5),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.keyboard_double_arrow_left_sharp,
                     color: Colors.black,
                     size: 45,
@@ -113,7 +114,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => addEpisode(serie, -1),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.keyboard_arrow_left_rounded,
                     color: Colors.black,
                     size: 45,
@@ -122,12 +123,12 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                 serie.seasonWatchingEpisode(selectedCard).toString() +
                     "/" +
                     serie.seasonTotalEpisodes(selectedCard).toString(),
-                style: TextStyle(fontSize: 30),
+                style: const TextStyle(fontSize: 30),
               ),
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => addEpisode(serie, 1),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.keyboard_arrow_right_sharp,
                     color: Colors.black,
                     size: 45,
@@ -135,7 +136,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
               IconButton(
                   padding: EdgeInsets.zero,
                   onPressed: () => addEpisode(serie, 5),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.keyboard_double_arrow_right_sharp,
                     color: Colors.black,
                     size: 45,
@@ -145,7 +146,7 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
           Text("currently watching " +
               serie.currentlyWatchingSeason().toString()),
           Text("selected $selectedCard"),
-          SizedBox(
+          const SizedBox(
             height: 20,
           )
         ],

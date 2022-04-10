@@ -1,4 +1,6 @@
 import 'dart:ffi';
+import 'package:dima_project/model/Serie.dart';
+import 'package:dima_project/screens/details_screen.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:cached_network_image/cached_network_image.dart';
@@ -7,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/season.dart';
-import '../model/serie.dart';
+import '../model/Serie.dart';
 import '../model/categories.dart';
 import '../model/series.dart';
 import '../widgets/main_drawer.dart';
@@ -122,10 +124,18 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CachedNetworkImage(
-      imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
-      placeholder: (context, url) => const CircularProgressIndicator(),
-      errorWidget: (context, url, error) => const Icon(Icons.error),
+    Serie res;
+    return IconButton(
+      onPressed: (() async => {
+            res = await findById(id.toString()),
+            Navigator.pushNamed(context, DetailsScreen.routeName,
+                arguments: res)
+          }),
+      icon: CachedNetworkImage(
+        imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
+        placeholder: (context, url) => const CircularProgressIndicator(),
+        errorWidget: (context, url, error) => const Icon(Icons.error),
+      ),
     );
   }
 }

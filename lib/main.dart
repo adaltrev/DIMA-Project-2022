@@ -26,9 +26,10 @@ class MyApp extends StatelessWidget {
         home: const ListScreen(),
         initialRoute: '/',
         routes: {
-          SearchScreen.routeName: (ctx) => SearchScreen(),
-          DetailsScreen.routeName: (ctx) => DetailsScreen(),
-          WatchingDetailsScreen.routeName: (ctx) => WatchingDetailsScreen()
+          SearchScreen.routeName: (ctx) => const SearchScreen(),
+          DetailsScreen.routeName: (ctx) => const DetailsScreen(),
+          WatchingDetailsScreen.routeName: (ctx) =>
+              const WatchingDetailsScreen()
         },
       ),
     );
