@@ -22,19 +22,28 @@ class _DetailsScreenState extends State<DetailsScreen> {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              const SizedBox(
+                height: 20,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  Expanded(
-                    child: CachedNetworkImage(
-                      imageUrl:
-                          "http://image.tmdb.org/t/p/w342" + serie.posterPath,
-                      placeholder: (context, url) =>
-                          const CircularProgressIndicator(),
-                      errorWidget: (context, url, error) =>
-                          const Icon(Icons.error),
-                    ),
+                  const SizedBox(
+                    width: 20,
+                  ),
+                  CachedNetworkImage(
+                    height: 300,
+                    width: 200,
+                    imageUrl:
+                        "http://image.tmdb.org/t/p/w342" + serie.posterPath,
+                    placeholder: (context, url) =>
+                        const CircularProgressIndicator(),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
+                  ),
+                  const SizedBox(
+                    width: 20,
                   ),
                   Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -50,8 +59,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       Text("First aired: " + serie.beginDate),
                       Text("Last aired: " + serie.endDate)
                     ],
+                  ),
+                  const SizedBox(
+                    width: 20,
                   )
                 ],
+              ),
+              const SizedBox(
+                height: 20,
               ),
               Text(
                 serie.overview,

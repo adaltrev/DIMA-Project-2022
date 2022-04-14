@@ -61,7 +61,7 @@ class _SearchScreenState extends State<SearchScreen> {
               number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
         ]);*/
 
-    final series = Provider.of<Series>(context);
+    //final series = Provider.of<Series>(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Search screen"),
@@ -72,14 +72,24 @@ class _SearchScreenState extends State<SearchScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
+            const SizedBox(
+              height: 20,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(
+                  width: 20,
+                ),
                 Expanded(
                     child: TextField(
                         textAlign: TextAlign.start,
+                        showCursor: true,
+                        decoration: const InputDecoration(
+                            border: OutlineInputBorder(),
+                            labelText: "Search TV series"),
                         onChanged: (x) => _query = x,
                         style: const TextStyle(
                           fontSize: 18,
@@ -93,11 +103,14 @@ class _SearchScreenState extends State<SearchScreen> {
                 )
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Expanded(
               child: GridView.count(
                 crossAxisCount: 2,
-                mainAxisSpacing: 20,
-                crossAxisSpacing: 20,
+                mainAxisSpacing: 10,
+                crossAxisSpacing: 10,
                 children: _results,
               ),
             )
@@ -132,6 +145,8 @@ class Result extends StatelessWidget {
                 arguments: res)
           }),
       icon: CachedNetworkImage(
+        height: 300,
+        width: 200,
         imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
         placeholder: (context, url) => const CircularProgressIndicator(),
         errorWidget: (context, url, error) => const Icon(Icons.error),
