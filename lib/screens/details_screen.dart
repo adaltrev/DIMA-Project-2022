@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dima_project/screens/poster_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/Serie.dart';
@@ -32,15 +33,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   const SizedBox(
                     width: 20,
                   ),
-                  CachedNetworkImage(
-                    height: 300,
-                    width: 200,
-                    imageUrl:
-                        "http://image.tmdb.org/t/p/w342" + serie.posterPath,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
-                    errorWidget: (context, url, error) =>
-                        const Icon(Icons.error),
+                  IconButton(
+                    onPressed: () => {
+                      Navigator.pushNamed(context, PosterScreen.routeName,
+                          arguments: serie.posterPath)
+                    },
+                    icon: CachedNetworkImage(
+                      height: 300,
+                      width: 200,
+                      imageUrl:
+                          "http://image.tmdb.org/t/p/w342" + serie.posterPath,
+                      placeholder: (context, url) =>
+                          const CircularProgressIndicator(),
+                      errorWidget: (context, url, error) =>
+                          const Icon(Icons.error),
+                    ),
+                    constraints: const BoxConstraints(
+                      minHeight: 300,
+                      minWidth: 200,
+                    ),
                   ),
                   const SizedBox(
                     width: 20,

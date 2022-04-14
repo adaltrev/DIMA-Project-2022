@@ -1,4 +1,5 @@
 import 'package:dima_project/screens/details_screen.dart';
+import 'package:dima_project/screens/poster_screen.dart';
 import 'package:dima_project/screens/watching_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -29,7 +30,8 @@ class MyApp extends StatelessWidget {
           SearchScreen.routeName: (ctx) => const SearchScreen(),
           DetailsScreen.routeName: (ctx) => const DetailsScreen(),
           WatchingDetailsScreen.routeName: (ctx) =>
-              const WatchingDetailsScreen()
+              const WatchingDetailsScreen(),
+          PosterScreen.routeName: (ctx) => const PosterScreen()
         },
       ),
     );

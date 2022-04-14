@@ -28,7 +28,7 @@ findById(String id) async {
       seasons.add(Season(
           number: item['season_number'],
           posterPath: item['poster_path'],
-          airDate: item['air_date'],
+          airDate: item['air_date'] ?? "N/A",
           episodes: item['episode_count']));
     }
   }
@@ -37,11 +37,13 @@ findById(String id) async {
       id: body['id'],
       name: body['name'],
       posterPath: body['poster_path'],
-      genre: body['genres'][0]['name'],
-      country: body['origin_country'][0],
+      genre: body['genres'].length == 0 ? "N/A" : body['genres'][0]['name'],
+      country: body['origin_country'].length == 0
+          ? "N/A"
+          : body['origin_country'][0],
       overview: body['overview'],
-      beginDate: body['first_air_date'],
-      endDate: body['last_air_date'],
+      beginDate: body['first_air_date'] ?? "N/A",
+      endDate: body['last_air_date'] ?? "N/A",
       status: body['status'],
       totalSeasons: body['number_of_seasons'],
       totalEpisodes: body['number_of_episodes'],

@@ -90,7 +90,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         decoration: const InputDecoration(
                             border: OutlineInputBorder(),
                             labelText: "Search TV series"),
+                        onEditingComplete: _updateSearch,
                         onChanged: (x) => _query = x,
+                        maxLength: 50,
                         style: const TextStyle(
                           fontSize: 18,
                           color: Colors.black,
