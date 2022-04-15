@@ -1,8 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/screens/poster_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-import '../model/Serie.dart';
+import '../model/serie.dart';
+import '../model/series.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -15,6 +17,8 @@ class DetailsScreen extends StatefulWidget {
 class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
+    final db = Provider.of<Series>(context);
+
     final serie = ModalRoute.of(context)!.settings.arguments as Serie;
     return Scaffold(
       appBar: AppBar(title: Text(serie.name)),
@@ -60,6 +64,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
+                      Row(children: [
+                        IconButton(
+                            onPressed: () => db.addSerie(serie),
+                            icon: const Icon(Icons.add_circle))
+                      ]),
                       Text("Genre: " + serie.genre),
                       Text("Country: " + serie.country),
                       Text("Status: " + serie.status),

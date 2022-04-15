@@ -1,6 +1,6 @@
 import 'package:dima_project/model/tv_search.dart';
 import 'package:dima_project/model/season.dart';
-import 'package:dima_project/model/Serie.dart';
+import 'package:dima_project/model/serie.dart';
 
 import 'dart:convert';
 import 'package:http/http.dart' as http;

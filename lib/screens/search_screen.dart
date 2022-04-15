@@ -1,5 +1,5 @@
 import 'dart:ffi';
-import 'package:dima_project/model/Serie.dart';
+import 'package:dima_project/model/serie.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:http/http.dart' as http;
 
@@ -9,7 +9,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../model/season.dart';
-import '../model/Serie.dart';
+import '../model/serie.dart';
 import '../model/categories.dart';
 import '../model/series.dart';
 import '../widgets/main_drawer.dart';
@@ -37,31 +37,9 @@ class _SearchScreenState extends State<SearchScreen> {
       _results = results;
     });
   }
-  /*@override
-  void initState() {
-    super.initState();
-    //searchByName("Breaking");
-    findById("1396");
-  }*/
 
   @override
   Widget build(BuildContext context) {
-    /*TODO remove
-    Serie DUMMY_SERIE = Serie(
-        id: 7777,
-        name: "Hunter x Hunter",
-        beginDate: "1999",
-        overview:
-            "Duis magna amet irure eu ullamco culpa id est elit qui. Cillum eiusmod sint ea esse est aute. Nostrud amet voluptate elit non pariatur eu consequat dolore. Consequat officia ipsum cupidatat cillum commodo mollit in consectetur non aliqua consectetur ipsum.",
-        category: Categories.watching,
-        posterPath: "/tolQj5yffSxkEGXusPwNcvYrbph.jpg",
-        seasons: [
-          Season(number: 1, posterPath: "", airDate: "21/45/45", episodes: 15),
-          Season(
-              number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
-        ]);*/
-
-    //final series = Provider.of<Series>(context);
     return Scaffold(
         appBar: AppBar(
           title: const Text("Search screen"),
@@ -117,16 +95,7 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             )
           ],
-        )
-
-        /*body: Container(
-        alignment: Alignment.center,
-        child: TextButton(
-          child: const Text("Add a serie"),
-          onPressed: () => series.addSerie(DUMMY_SERIE),
-        ),
-      ),*/
-        );
+        ));
   }
 }
 
