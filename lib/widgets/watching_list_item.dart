@@ -5,31 +5,63 @@ import 'package:flutter/material.dart';
 import '../model/serie.dart';
 
 class WatchingListItem extends StatelessWidget {
-  const WatchingListItem(this.serie, {Key? key}) : super(key: key);
+  WatchingListItem(this.serie, this.goToDetails);
 
   final Serie serie;
+  Function goToDetails;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Navigator.of(context).pushNamed(
-          WatchingDetailsScreen.routeName,
-          //TODO pass id
-          arguments: serie,
-        );
-      },
-      child: Card(
-        child: ListTile(
-          leading: CachedNetworkImage(
-            imageUrl: "http://image.tmdb.org/t/p/w342" + serie.posterPath,
-            placeholder: (context, url) => CircularProgressIndicator(),
-            errorWidget: (context, url, error) => Icon(Icons.error),
+        onTap: () {
+          goToDetails(serie);
+        },
+        child: Container(
+          margin: EdgeInsets.all(10),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Flexible(
+                flex: 2,
+                child: Container(
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.grey.withOpacity(0.8),
+                        spreadRadius: 4,
+                        blurRadius: 4,
+                        offset: Offset(0, 2), // changes position of shadow
+                      ),
+                    ],
+                  ),
+                  child: CachedNetworkImage(
+                    imageUrl:
+                        "http://image.tmdb.org/t/p/w342" + serie.posterPath,
+                    placeholder: (context, url) => CircularProgressIndicator(),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                ),
+              ),
+              Flexible(
+                  flex: 5,
+                  child: Padding(
+                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(serie.name),
+                        Text("Season " +
+                            serie.currentlyWatchingSeason().toString()),
+                        Text("Episode " +
+                            serie
+                                .seasonWatchingEpisode(
+                                    serie.currentlyWatchingSeason())
+                                .toString()),
+                      ],
+                    ),
+                  )),
+            ],
           ),
-          title: Text(serie.name),
-          subtitle: Text(serie.beginDate),
-        ),
-      ),
-    );
+        ));
   }
 }

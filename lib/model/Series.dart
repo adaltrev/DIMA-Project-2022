@@ -114,7 +114,7 @@ class Series extends ChangeNotifier {
         ]),
     Serie(
         id: 84,
-        name: "Friends",
+        name: "Dastardly and Muttley in Their Flying Machines",
         beginDate: "2020",
         overview:
             "Sint commodo labore et ad esse ea voluptate minim aute aliqua commodo mollit cupidatat exercitation. Proident veniam proident ut est Lorem minim ea nulla incididunt laboris anim. Nostrud reprehenderit do in duis laboris amet commodo eiusmod. Pariatur sit laboris deserunt deserunt nostrud excepteur exercitation est.",
