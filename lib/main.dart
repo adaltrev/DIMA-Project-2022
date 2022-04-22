@@ -25,19 +25,11 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData(
-          colorScheme: const ColorScheme(
-              brightness: Brightness.light,
-              primary: Colors.red,
-              onPrimary: Color.fromARGB(255, 193, 193, 189),
-              secondary: Colors.blue,
-              onSecondary: Colors.teal,
-              background: Colors.black,
-              onBackground: Colors.deepPurple,
-              error: Colors.lime,
-              onError: Colors.lime,
-              surface: Color.fromARGB(255, 0, 191, 16),
-              onSurface: Colors.lime),
-        ),
+            primaryColor: Colors.teal,
+            brightness: Brightness.dark,
+            canvasColor: Color.fromARGB(255, 18, 18, 18),
+            cardColor: Color.fromARGB(255, 40, 40, 40),
+            shadowColor: Colors.white),
         theme: ThemeData.light(),
         home: ResponsiveSizer(
           builder: (context, orientation, screenType) {

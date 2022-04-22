@@ -20,8 +20,9 @@ class _ListScreenState extends State<ListScreen> {
       // initialIndex: 0,
       child: Scaffold(
         appBar: AppBar(
-          title: const Text('My List'),
-          bottom: const TabBar(
+          title: TabBar(
+            indicatorColor: Theme.of(context).primaryColor,
+            labelColor: Theme.of(context).primaryColor,
             tabs: <Widget>[
               Tab(
                 text: 'Watching',

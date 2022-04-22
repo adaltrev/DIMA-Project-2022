@@ -19,7 +19,6 @@ class WatchingListItem extends StatelessWidget {
           goToDetails(serie);
         },
         child: Card(
-          elevation: 5,
           margin: EdgeInsets.fromLTRB(2.w, 1.w, 2.w, 1.w),
           child: Padding(
             padding: EdgeInsets.fromLTRB(2.w, 2.w, 2.w, 2.w),
