@@ -26,13 +26,12 @@ class MyApp extends StatelessWidget {
             primarySwatch: Colors.blue,
             textTheme: TextTheme(
               headline1: TextStyle(
-                  fontSize: 20.sp,
+                  fontSize: 20,
                   fontWeight: FontWeight.w400,
                   color: Colors.black87),
-              headline2: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
-              bodyText1: TextStyle(fontSize: 19.sp),
-              bodyText2: TextStyle(fontSize: 19.sp, color: Colors.black38),
-              caption: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+              headline2: TextStyle(fontWeight: FontWeight.bold),
+              bodyText2: TextStyle(color: Colors.black38),
+              caption: TextStyle(fontFamily: 'Hind'),
             )),
         home: ResponsiveSizer(
           builder: (context, orientation, screenType) {

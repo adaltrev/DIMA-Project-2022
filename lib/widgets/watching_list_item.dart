@@ -44,7 +44,10 @@ class WatchingListItem extends StatelessWidget {
                         children: [
                           Text(
                             serie.name,
-                            style: Theme.of(context).textTheme.headline1,
+                            style: Theme.of(context)
+                                .textTheme
+                                .headline1
+                                ?.copyWith(fontSize: 20.sp),
                           ),
                           Text(
                             "Season " +
