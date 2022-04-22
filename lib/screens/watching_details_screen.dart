@@ -54,23 +54,25 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                     onTap: () {
                       updateSelectedCard(index);
                     },
+                    //elevation: selectedCard == index ? 8 : 0,
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Card(
-                          clipBehavior: Clip.antiAlias,
-                          elevation: selectedCard == index ? 8 : 0,
-                          color: Colors.grey,
+                        Expanded(
                           child: Stack(
                             alignment: Alignment.center,
                             children: [
-                              CachedNetworkImage(
-                                imageUrl: "http://image.tmdb.org/t/p/w185" +
-                                    season.posterPath,
-                                placeholder: (context, url) =>
-                                    const CircularProgressIndicator(),
-                                errorWidget: (context, url, error) =>
-                                    const Icon(Icons.error),
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(7),
+                                child: CachedNetworkImage(
+                                  imageUrl: "http://image.tmdb.org/t/p/w185" +
+                                      season.posterPath,
+                                  placeholder: (context, url) =>
+                                      const CircularProgressIndicator(),
+                                  errorWidget: (context, url, error) =>
+                                      const Icon(Icons.error),
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                               if (season.completed()) ...[
                                 Positioned.fill(
@@ -87,8 +89,13 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                             ],
                           ),
                         ),
-                        Text("Season $index",
-                            style: const TextStyle(color: Colors.white)),
+                        Text(
+                          "Season $index",
+                          style: TextStyle(
+                              color: selectedCard == index
+                                  ? Theme.of(context).primaryColor
+                                  : Colors.white),
+                        )
                       ],
                     ),
                   );
