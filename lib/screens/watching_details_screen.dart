@@ -54,44 +54,42 @@ class _WatchingDetailsScreenState extends State<WatchingDetailsScreen> {
                     onTap: () {
                       updateSelectedCard(index);
                     },
-                    child: Card(
-                      clipBehavior: Clip.antiAlias,
-                      elevation: selectedCard == index ? 10 : 0,
-                      color: Colors.grey,
-                      child: Stack(
-                        children: [
-                          Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                CachedNetworkImage(
-                                  imageUrl: "http://image.tmdb.org/t/p/w185" +
-                                      season.posterPath,
-                                  placeholder: (context, url) =>
-                                      const CircularProgressIndicator(),
-                                  errorWidget: (context, url, error) =>
-                                      const Icon(Icons.error),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Card(
+                          clipBehavior: Clip.antiAlias,
+                          elevation: selectedCard == index ? 8 : 0,
+                          color: Colors.grey,
+                          child: Stack(
+                            alignment: Alignment.center,
+                            children: [
+                              CachedNetworkImage(
+                                imageUrl: "http://image.tmdb.org/t/p/w185" +
+                                    season.posterPath,
+                                placeholder: (context, url) =>
+                                    const CircularProgressIndicator(),
+                                errorWidget: (context, url, error) =>
+                                    const Icon(Icons.error),
+                              ),
+                              if (season.completed()) ...[
+                                Positioned.fill(
+                                  child: Container(
+                                    color: Colors.black38,
+                                  ),
                                 ),
-                                Text("Season $index",
-                                    style:
-                                        const TextStyle(color: Colors.white)),
-                              ]),
-                          if (season.completed()) ...[
-                            Center(
-                              child: Container(
-                                color: Colors.black38,
-                              ),
-                            ),
-                            const Center(
-                              child: Icon(
-                                Icons.check_circle_sharp,
-                                color: Colors.green,
-                                size: 30,
-                              ),
-                            )
-                          ]
-                        ],
-                      ),
+                                const Icon(
+                                  Icons.check_circle_sharp,
+                                  color: Colors.green,
+                                  size: 30,
+                                ),
+                              ]
+                            ],
+                          ),
+                        ),
+                        Text("Season $index",
+                            style: const TextStyle(color: Colors.white)),
+                      ],
                     ),
                   );
                 }).toList()
