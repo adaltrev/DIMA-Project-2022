@@ -4,6 +4,7 @@ import 'package:dima_project/screens/watching_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'package:responsive_sizer/responsive_sizer.dart';
 import './screens/search_screen.dart';
 import 'screens/home_screen.dart';
 import './model/series.dart';
@@ -22,9 +23,22 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
+            primarySwatch: Colors.blue,
+            textTheme: TextTheme(
+              headline1: TextStyle(
+                  fontSize: 20.sp,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black87),
+              headline2: TextStyle(fontSize: 72.0, fontWeight: FontWeight.bold),
+              bodyText1: TextStyle(fontSize: 19.sp),
+              bodyText2: TextStyle(fontSize: 19.sp, color: Colors.black38),
+              caption: TextStyle(fontSize: 14.0, fontFamily: 'Hind'),
+            )),
+        home: ResponsiveSizer(
+          builder: (context, orientation, screenType) {
+            return const ListScreen();
+          },
         ),
-        home: const ListScreen(),
         initialRoute: '/',
         routes: {
           SearchScreen.routeName: (ctx) => const SearchScreen(),

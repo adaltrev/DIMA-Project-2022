@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/screens/watching_details_screen.dart';
 import 'package:flutter/material.dart';
 
+import 'package:responsive_sizer/responsive_sizer.dart';
 import '../model/serie.dart';
 
 class WatchingListItem extends StatelessWidget {
@@ -16,24 +17,17 @@ class WatchingListItem extends StatelessWidget {
         onTap: () {
           goToDetails(serie);
         },
-        child: Container(
-          margin: EdgeInsets.all(10),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Flexible(
-                flex: 2,
-                child: Container(
-                  decoration: BoxDecoration(
-                    boxShadow: [
-                      BoxShadow(
-                        color: Colors.grey.withOpacity(0.8),
-                        spreadRadius: 4,
-                        blurRadius: 4,
-                        offset: Offset(0, 2), // changes position of shadow
-                      ),
-                    ],
-                  ),
+        child: Card(
+          color: Color.fromARGB(79, 3, 167, 243),
+          elevation: 5,
+          margin: EdgeInsets.fromLTRB(2.w, 1.w, 2.w, 1.w),
+          child: Padding(
+            padding: EdgeInsets.fromLTRB(2.w, 2.w, 2.w, 2.w),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Flexible(
+                  flex: 2,
                   child: CachedNetworkImage(
                     imageUrl:
                         "http://image.tmdb.org/t/p/w342" + serie.posterPath,
@@ -41,26 +35,35 @@ class WatchingListItem extends StatelessWidget {
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
-              ),
-              Flexible(
-                  flex: 5,
-                  child: Padding(
-                    padding: const EdgeInsets.fromLTRB(10, 0, 0, 0),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(serie.name),
-                        Text("Season " +
-                            serie.currentlyWatchingSeason().toString()),
-                        Text("Episode " +
-                            serie
-                                .seasonWatchingEpisode(
-                                    serie.currentlyWatchingSeason())
-                                .toString()),
-                      ],
-                    ),
-                  )),
-            ],
+                Flexible(
+                    flex: 5,
+                    child: Padding(
+                      padding: EdgeInsets.fromLTRB(3.w, 0, 0, 0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            serie.name,
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                          Text(
+                            "Season " +
+                                serie.currentlyWatchingSeason().toString(),
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                          Text(
+                            "Watched " +
+                                serie
+                                    .seasonWatchingEpisode(
+                                        serie.currentlyWatchingSeason())
+                                    .toString(),
+                            style: Theme.of(context).textTheme.bodyText2,
+                          ),
+                        ],
+                      ),
+                    )),
+              ],
+            ),
           ),
         ));
   }
