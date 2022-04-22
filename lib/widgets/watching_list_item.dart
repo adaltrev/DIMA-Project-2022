@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../model/serie.dart';
+import 'package:dima_project/asset/text_styles.dart';
 
 class WatchingListItem extends StatelessWidget {
   WatchingListItem(this.serie, this.goToDetails);
@@ -18,7 +19,6 @@ class WatchingListItem extends StatelessWidget {
           goToDetails(serie);
         },
         child: Card(
-          color: Color.fromARGB(79, 3, 167, 243),
           elevation: 5,
           margin: EdgeInsets.fromLTRB(2.w, 1.w, 2.w, 1.w),
           child: Padding(
@@ -44,15 +44,12 @@ class WatchingListItem extends StatelessWidget {
                         children: [
                           Text(
                             serie.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .headline1
-                                ?.copyWith(fontSize: 20.sp),
+                            style: Theme.of(context).textTheme.cardText1,
                           ),
                           Text(
                             "Season " +
                                 serie.currentlyWatchingSeason().toString(),
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.cardText2,
                           ),
                           Text(
                             "Watched " +
@@ -60,7 +57,7 @@ class WatchingListItem extends StatelessWidget {
                                     .seasonWatchingEpisode(
                                         serie.currentlyWatchingSeason())
                                     .toString(),
-                            style: Theme.of(context).textTheme.bodyText2,
+                            style: Theme.of(context).textTheme.cardText2,
                           ),
                         ],
                       ),

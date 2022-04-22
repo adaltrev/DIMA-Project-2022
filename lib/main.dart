@@ -1,3 +1,4 @@
+import 'package:dima_project/asset/text_styles.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:dima_project/screens/poster_screen.dart';
 import 'package:dima_project/screens/watching_details_screen.dart';
@@ -22,17 +23,22 @@ class MyApp extends StatelessWidget {
       create: (context) => Series(),
       child: MaterialApp(
         title: 'Flutter Demo',
-        theme: ThemeData(
-            primarySwatch: Colors.blue,
-            textTheme: TextTheme(
-              headline1: TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.w400,
-                  color: Colors.black87),
-              headline2: TextStyle(fontWeight: FontWeight.bold),
-              bodyText2: TextStyle(color: Colors.black38),
-              caption: TextStyle(fontFamily: 'Hind'),
-            )),
+        themeMode: ThemeMode.dark,
+        darkTheme: ThemeData(
+          colorScheme: const ColorScheme(
+              brightness: Brightness.light,
+              primary: Colors.red,
+              onPrimary: Color.fromARGB(255, 193, 193, 189),
+              secondary: Colors.blue,
+              onSecondary: Colors.teal,
+              background: Colors.black,
+              onBackground: Colors.deepPurple,
+              error: Colors.lime,
+              onError: Colors.lime,
+              surface: Color.fromARGB(255, 0, 191, 16),
+              onSurface: Colors.lime),
+        ),
+        theme: ThemeData.light(),
         home: ResponsiveSizer(
           builder: (context, orientation, screenType) {
             return const ListScreen();
