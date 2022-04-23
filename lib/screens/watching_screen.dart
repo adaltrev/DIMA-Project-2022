@@ -25,6 +25,12 @@ class _WatchingScreenState extends State<WatchingScreen> {
         .then((_) => setState(() {}));
   }
 
+  void updateEpisode(Serie serie, quantity) {
+    setState(() {
+      serie.addEpisodes(serie.currentlyWatchingSeason(), quantity);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final series = Provider.of<Series>(context);
@@ -34,7 +40,7 @@ class _WatchingScreenState extends State<WatchingScreen> {
       alignment: Alignment.center,
       child: ListView(children: [
         ...completed.map((serie) {
-          return WatchingListItem(serie, goToDetails);
+          return WatchingListItem(serie, goToDetails, updateEpisode);
         }).toList()
       ]),
     );

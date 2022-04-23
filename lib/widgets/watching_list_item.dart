@@ -1,16 +1,18 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/screens/watching_details_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import '../model/serie.dart';
 import 'package:dima_project/asset/text_styles.dart';
 
 class WatchingListItem extends StatelessWidget {
-  WatchingListItem(this.serie, this.goToDetails);
+  WatchingListItem(this.serie, this.goToDetails, this.updateEpisode);
 
   final Serie serie;
   Function goToDetails;
+  Function updateEpisode;
 
   @override
   Widget build(BuildContext context) {
@@ -45,18 +47,65 @@ class WatchingListItem extends StatelessWidget {
                             serie.name,
                             style: Theme.of(context).textTheme.cardText1,
                           ),
-                          Text(
-                            "Season " +
-                                serie.currentlyWatchingSeason().toString(),
-                            style: Theme.of(context).textTheme.cardText2,
-                          ),
-                          Text(
-                            "Watched " +
-                                serie
-                                    .seasonWatchingEpisode(
-                                        serie.currentlyWatchingSeason())
-                                    .toString(),
-                            style: Theme.of(context).textTheme.cardText2,
+                          Padding(
+                            padding: EdgeInsets.fromLTRB(0, 2.w, 0, 0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Season " +
+                                      serie
+                                          .currentlyWatchingSeason()
+                                          .toString(),
+                                  style: Theme.of(context).textTheme.cardText2,
+                                ),
+                                Text(
+                                  "Last seen: 3 days ago ",
+                                  style: Theme.of(context).textTheme.cardText2,
+                                ),
+                                Row(
+                                  children: [
+                                    Text(
+                                      "Watched ",
+                                      style:
+                                          Theme.of(context).textTheme.cardText2,
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        constraints: BoxConstraints(),
+                                        highlightColor:
+                                            Theme.of(context).primaryColor,
+                                        splashRadius: 2.w,
+                                        onPressed: () =>
+                                            updateEpisode(serie, -1),
+                                        icon: Icon(
+                                          Icons.remove_circle_outline_sharp,
+                                          size: 5.w,
+                                        )),
+                                    Text(
+                                      serie
+                                          .seasonWatchingEpisode(
+                                              serie.currentlyWatchingSeason())
+                                          .toString(),
+                                      style:
+                                          Theme.of(context).textTheme.cardText2,
+                                    ),
+                                    IconButton(
+                                        padding: EdgeInsets.zero,
+                                        constraints: BoxConstraints(),
+                                        highlightColor:
+                                            Theme.of(context).primaryColor,
+                                        splashRadius: 2.w,
+                                        onPressed: () =>
+                                            updateEpisode(serie, 1),
+                                        icon: Icon(
+                                          Icons.add_circle_outline_sharp,
+                                          size: 5.w,
+                                        )),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ],
                       ),
