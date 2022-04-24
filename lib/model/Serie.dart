@@ -30,7 +30,7 @@ class Serie {
       this.status = "in progress",
       this.totalSeasons = 7,
       this.totalEpisodes = 25,
-      this.category = Categories.watching,
+      this.category = Categories.searched,
       required this.seasons});
 
   //return the season we are currently watching

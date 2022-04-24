@@ -1,1 +1,1 @@
-enum Categories { watching, completed, wishlist }
+enum Categories { watching, completed, wishlist, searched }

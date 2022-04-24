@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/widgets/adder_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
@@ -103,10 +104,13 @@ class _SeasonsPagesState extends State<SeasonsPages> {
             ],
           ),
         ),
-        AdderBar(widget.serie, addEpisode, selectedCard),
-        SizedBox(
-          height: 5.h,
-        )
+        //if I'm searching the series hide the tools to update watching episodes
+        if (widget.serie.category != Categories.searched) ...[
+          AdderBar(widget.serie, addEpisode, selectedCard),
+          SizedBox(
+            height: 5.h,
+          )
+        ]
       ],
     );
   }
