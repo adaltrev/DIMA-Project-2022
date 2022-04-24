@@ -6,6 +6,7 @@ import '../model/serie.dart';
 import '../model/series.dart';
 import '../widgets/list_item.dart';
 import '../widgets/watching_list_item.dart';
+import 'details_screen.dart';
 
 class WatchingScreen extends StatefulWidget {
   const WatchingScreen({Key? key}) : super(key: key);
@@ -18,7 +19,7 @@ class _WatchingScreenState extends State<WatchingScreen> {
   void goToDetails(Serie serie) {
     Navigator.of(context)
         .pushNamed(
-          WatchingDetailsScreen.routeName,
+          DetailsScreen.routeName,
           //TODO pass id
           arguments: serie,
         )

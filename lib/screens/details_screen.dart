@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/screens/poster_screen.dart';
+import 'package:dima_project/widgets/seasons_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -90,7 +91,8 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ),
               Text(
                 serie.overview,
-              )
+              ),
+              SeasonsPages(serie)
             ]),
       ),
     );
