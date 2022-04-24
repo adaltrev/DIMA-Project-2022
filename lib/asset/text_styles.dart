@@ -6,5 +6,5 @@ extension CustomStyles on TextTheme {
       TextStyle(fontSize: 22.sp, fontWeight: FontWeight.w400);
 
   TextStyle get cardText2 =>
-      TextStyle(fontSize: 20.sp, fontWeight: FontWeight.w300);
+      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300);
 }

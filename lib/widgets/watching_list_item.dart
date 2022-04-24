@@ -38,6 +38,7 @@ class WatchingListItem extends StatelessWidget {
                 ),
                 Flexible(
                     flex: 5,
+                    fit: FlexFit.loose,
                     child: Padding(
                       padding: EdgeInsets.fromLTRB(3.w, 0, 0, 0),
                       child: Column(
@@ -59,10 +60,6 @@ class WatchingListItem extends StatelessWidget {
                                           .toString(),
                                   style: Theme.of(context).textTheme.cardText2,
                                 ),
-                                Text(
-                                  "Last seen: 3 days ago ",
-                                  style: Theme.of(context).textTheme.cardText2,
-                                ),
                                 Row(
                                   children: [
                                     Text(
@@ -70,18 +67,6 @@ class WatchingListItem extends StatelessWidget {
                                       style:
                                           Theme.of(context).textTheme.cardText2,
                                     ),
-                                    IconButton(
-                                        padding: EdgeInsets.zero,
-                                        constraints: BoxConstraints(),
-                                        highlightColor:
-                                            Theme.of(context).primaryColor,
-                                        splashRadius: 2.w,
-                                        onPressed: () =>
-                                            updateEpisode(serie, -1),
-                                        icon: Icon(
-                                          Icons.remove_circle_outline_sharp,
-                                          size: 5.w,
-                                        )),
                                     Text(
                                       serie
                                           .seasonWatchingEpisode(
@@ -90,18 +75,23 @@ class WatchingListItem extends StatelessWidget {
                                       style:
                                           Theme.of(context).textTheme.cardText2,
                                     ),
-                                    IconButton(
-                                        padding: EdgeInsets.zero,
-                                        constraints: BoxConstraints(),
-                                        highlightColor:
-                                            Theme.of(context).primaryColor,
-                                        splashRadius: 2.w,
-                                        onPressed: () =>
-                                            updateEpisode(serie, 1),
-                                        icon: Icon(
-                                          Icons.add_circle_outline_sharp,
-                                          size: 5.w,
-                                        )),
+                                  ],
+                                ),
+                                Text(
+                                  "Last seen: 3 days ago ",
+                                  style: Theme.of(context).textTheme.cardText2,
+                                ),
+                                Row(
+                                  children: [
+                                    const Spacer(),
+                                    InkWell(
+                                      splashColor: Colors.transparent,
+                                      onTap: () => updateEpisode(serie, 1),
+                                      child: Icon(
+                                        Icons.add,
+                                        size: 13.w,
+                                      ),
+                                    ),
                                   ],
                                 ),
                               ],
