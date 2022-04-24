@@ -84,8 +84,12 @@ class WatchingListItem extends StatelessWidget {
                                 Row(
                                   children: [
                                     const Spacer(),
+                                    //I use inkwell because I had issues with icon button
                                     InkWell(
                                       splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
                                       onTap: () => updateEpisode(serie, 1),
                                       child: Icon(
                                         Icons.add,
