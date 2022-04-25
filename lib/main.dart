@@ -1,4 +1,5 @@
 import 'package:dima_project/asset/text_styles.dart';
+import 'package:dima_project/screens/add_series_screen.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:dima_project/screens/poster_screen.dart';
 import 'package:dima_project/screens/watching_details_screen.dart';
@@ -42,7 +43,8 @@ class MyApp extends StatelessWidget {
           DetailsScreen.routeName: (ctx) => const DetailsScreen(),
           WatchingDetailsScreen.routeName: (ctx) =>
               const WatchingDetailsScreen(),
-          PosterScreen.routeName: (ctx) => const PosterScreen()
+          PosterScreen.routeName: (ctx) => const PosterScreen(),
+          AddScreen.routeName: (ctx) => const AddScreen(),
         },
       ),
     );

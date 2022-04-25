@@ -6,6 +6,7 @@ import 'package:provider/provider.dart';
 
 import '../model/serie.dart';
 import '../model/series.dart';
+import 'add_series_screen.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key}) : super(key: key);
@@ -67,7 +68,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     children: [
                       Row(children: [
                         IconButton(
-                            onPressed: () => db.addSerie(serie),
+                            onPressed: () => {
+                                  Navigator.pushNamed(
+                                      context, AddScreen.routeName,
+                                      arguments: serie)
+                                },
                             icon: const Icon(Icons.add_circle))
                       ]),
                       Text("Genre: " + serie.genre),
