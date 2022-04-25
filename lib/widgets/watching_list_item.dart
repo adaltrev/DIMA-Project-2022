@@ -55,21 +55,33 @@ class WatchingListItem extends StatelessWidget {
                               children: [
                                 Text(
                                   "Season " +
-                                      serie
-                                          .currentlyWatchingSeason()
+                                      (serie.currentlyWatchingSeason() + 1)
                                           .toString(),
                                   style: Theme.of(context).textTheme.cardText2,
                                 ),
                                 Row(
                                   children: [
                                     Text(
-                                      "Watched ",
+                                      "Episode ",
                                       style:
                                           Theme.of(context).textTheme.cardText2,
                                     ),
                                     Text(
                                       serie
                                           .seasonWatchingEpisode(
+                                              serie.currentlyWatchingSeason())
+                                          .toString(),
+                                      style:
+                                          Theme.of(context).textTheme.cardText2,
+                                    ),
+                                    Text(
+                                      "/",
+                                      style:
+                                          Theme.of(context).textTheme.cardText2,
+                                    ),
+                                    Text(
+                                      serie
+                                          .seasonTotalEpisodes(
                                               serie.currentlyWatchingSeason())
                                           .toString(),
                                       style:

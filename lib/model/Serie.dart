@@ -1,4 +1,6 @@
+import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/model/season.dart';
+import 'package:flutter/foundation.dart';
 
 import './categories.dart';
 
@@ -58,12 +60,19 @@ class Serie {
   //add episodes to season and return the index of the card that should be selected
   addEpisodes(int selectedCardIndex, int quantity) {
     Season selectedSeason = seasons.elementAt(selectedCardIndex);
+
     //if I have selected the season I'm currently watching
     if (selectedCardIndex == currentlyWatchingSeason()) {
       selectedSeason.watched += quantity;
+
       //if i've watched all the episodes
       if (selectedSeason.watched >= selectedSeason.episodes) {
         selectedSeason.watched = selectedSeason.episodes;
+
+        //If all seasons complete, change category
+        if (selectedSeason.number >= totalSeasons) {
+          changeCategory(Categories.completed);
+        }
         //if I'm not in the last season return index of the next season otherwise return the last season
         int increment = selectedSeason.number < totalSeasons ? 1 : 0;
         return selectedCardIndex + increment;
@@ -102,5 +111,9 @@ class Serie {
         season.complete();
       }
     });
+  }
+
+  void changeCategory(Categories status) {
+    category = status;
   }
 }

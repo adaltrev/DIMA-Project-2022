@@ -91,7 +91,7 @@ class _SeasonsPagesState extends State<SeasonsPages> {
                         ),
                       ),
                       Text(
-                        "Season $index",
+                        "Season ${index + 1}",
                         style: TextStyle(
                             color: selectedCard == index
                                 ? Theme.of(context).primaryColor
