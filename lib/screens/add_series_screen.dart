@@ -168,6 +168,8 @@ class _AddScreenState extends State<AddScreen> {
                   child: const Text("Cancel")),
               TextButton(
                   onPressed: () => {
+                        if (serie.category == Categories.searched)
+                          {db.addSerie(serie)},
                         if (status == "Watching")
                           {
                             //TODO buggato, da sistemare
@@ -185,8 +187,6 @@ class _AddScreenState extends State<AddScreen> {
                             serie.changeCategory(Categories.wishlist),
                             serie.emptySeasons(-1)
                           },
-                        if (serie.category == Categories.searched)
-                          {db.addSerie(serie)},
                         Navigator.pop(context)
                       },
                   child: serie.category == Categories.searched
