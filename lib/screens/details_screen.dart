@@ -4,6 +4,7 @@ import 'package:dima_project/widgets/seasons_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../model/categories.dart';
 import '../model/serie.dart';
 import '../model/series.dart';
 import 'add_series_screen.dart';
@@ -73,7 +74,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                       context, AddScreen.routeName,
                                       arguments: serie)
                                 },
-                            icon: const Icon(Icons.add_circle))
+                            icon: serie.category == Categories.searched
+                                ? const Icon(Icons.add_circle)
+                                : const Icon(Icons.edit_note))
                       ]),
                       Text("Genre: " + serie.genre),
                       Text("Country: " + serie.country),

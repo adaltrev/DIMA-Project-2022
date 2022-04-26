@@ -17,11 +17,39 @@ class _AddScreenState extends State<AddScreen> {
   String status = 'Watching';
   int season = 1;
   int episode = 0;
+  bool _init = true;
+
+  void initStatus(Serie serie) {
+    serie.category == Categories.searched
+        ? {status = 'Watching', season = 1, episode = 0}
+        : {
+            if (serie.category == Categories.watching)
+              {
+                status = 'Watching',
+                season = serie.currentlyWatchingSeason() + 1,
+                episode =
+                    serie.seasonWatchingEpisode(serie.currentlyWatchingSeason())
+              }
+            else if (serie.category == Categories.completed)
+              {
+                status = 'Completed',
+                season = serie.totalSeasons,
+                episode = serie.seasons[serie.totalSeasons - 1].episodes
+              }
+            else if (serie.category == Categories.wishlist)
+              {status = 'Plan to watch'},
+          };
+    _init = false;
+  }
 
   @override
   Widget build(BuildContext context) {
     final db = Provider.of<Series>(context);
     final serie = ModalRoute.of(context)!.settings.arguments as Serie;
+
+    if (_init == true) {
+      initStatus(serie);
+    }
 
     return Scaffold(
       appBar: AppBar(title: Text(serie.name)),
@@ -157,10 +185,13 @@ class _AddScreenState extends State<AddScreen> {
                             serie.changeCategory(Categories.wishlist),
                             serie.emptySeasons(-1)
                           },
-                        db.addSerie(serie),
+                        if (serie.category == Categories.searched)
+                          {db.addSerie(serie)},
                         Navigator.pop(context)
                       },
-                  child: const Text("Add to list"))
+                  child: serie.category == Categories.searched
+                      ? const Text("Add to list")
+                      : const Text("Edit"))
             ],
           )
         ],
