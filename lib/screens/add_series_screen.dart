@@ -191,7 +191,18 @@ class _AddScreenState extends State<AddScreen> {
                       },
                   child: serie.category == Categories.searched
                       ? const Text("Add to list")
-                      : const Text("Edit"))
+                      : const Text("Edit")),
+              TextButton(
+                  onPressed: serie.category == Categories.searched
+                      ? null
+                      : () => {
+                            serie.category = Categories.searched,
+                            db.removeSeries(serie.id),
+                            Navigator.pop(context)
+                          },
+                  child: serie.category == Categories.searched
+                      ? const Text("")
+                      : const Text("Remove from list"))
             ],
           )
         ],

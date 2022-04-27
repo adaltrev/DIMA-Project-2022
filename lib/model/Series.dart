@@ -166,4 +166,12 @@ class Series extends ChangeNotifier {
     _series.add(serie);
     notifyListeners();
   }
+
+  void removeSeries(int id) {
+    List<Serie> toRemove = _series.where((serie) => serie.id == id).toList();
+    for (var serie in toRemove) {
+      _series.remove(serie);
+    }
+    notifyListeners();
+  }
 }
