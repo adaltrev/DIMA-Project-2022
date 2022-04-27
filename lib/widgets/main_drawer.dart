@@ -38,7 +38,7 @@ class MainDrawer extends StatelessWidget {
           const SizedBox(
             height: 20,
           ),
-          buildListTile('List', () {
+          buildListTile('My List', () {
             Navigator.of(context).pushReplacementNamed('/');
           }),
           buildListTile('Search', () {

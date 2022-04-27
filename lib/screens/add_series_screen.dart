@@ -164,9 +164,6 @@ class _AddScreenState extends State<AddScreen> {
           Row(
             children: [
               TextButton(
-                  onPressed: () => {Navigator.pop(context)},
-                  child: const Text("Cancel")),
-              TextButton(
                   onPressed: () => {
                         if (serie.category == Categories.searched)
                           {db.addSerie(serie)},
@@ -202,7 +199,8 @@ class _AddScreenState extends State<AddScreen> {
                           },
                   child: serie.category == Categories.searched
                       ? const Text("")
-                      : const Text("Remove from list"))
+                      : const Text("Remove from list",
+                          style: TextStyle(color: Colors.red)))
             ],
           )
         ],

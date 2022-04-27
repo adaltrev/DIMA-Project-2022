@@ -73,7 +73,7 @@ class _SearchScreenState extends State<SearchScreen> {
                         maxLength: 50,
                         style: const TextStyle(
                           fontSize: 18,
-                          color: Colors.black,
+                          color: Colors.white,
                           fontWeight: FontWeight.w200,
                         ))),
                 IconButton(
