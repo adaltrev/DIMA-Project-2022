@@ -1,9 +1,9 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import '../model/serie.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
-import '../model/serie.dart';
 import '../widgets/seasons_pages.dart';
 
 class WatchingDetailsScreen extends StatefulWidget {

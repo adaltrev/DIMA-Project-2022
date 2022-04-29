@@ -6,9 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/categories.dart';
-import '../model/serie.dart';
 import '../model/series.dart';
 import 'add_series_screen.dart';
+import '../model/serie.dart';
 
 class DetailsScreen extends StatefulWidget {
   const DetailsScreen({Key? key}) : super(key: key);

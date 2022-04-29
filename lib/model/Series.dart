@@ -111,6 +111,21 @@ class Series extends ChangeNotifier {
               posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
               airDate: "21/45/2022",
               episodes: 17),
+          Season(
+              number: 8,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 18),
+          Season(
+              number: 9,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 19),
+          Season(
+              number: 10,
+              posterPath: "/qWnJzyZhyy74gjpSjIXWmuk0ifX.jpg",
+              airDate: "21/45/2022",
+              episodes: 20),
         ]),
     Serie(
         id: 84,
@@ -141,6 +156,7 @@ class Series extends ChangeNotifier {
   ];
 
   List<Serie> get series {
+    //can also simply do return _series
     return [..._series];
   }
 

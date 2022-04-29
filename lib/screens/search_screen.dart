@@ -1,5 +1,4 @@
 import 'dart:ffi';
-import 'package:dima_project/model/serie.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:http/http.dart' as http;
 

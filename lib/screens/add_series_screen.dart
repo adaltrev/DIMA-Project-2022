@@ -1,8 +1,8 @@
 import 'package:dima_project/model/categories.dart';
-import 'package:dima_project/model/serie.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../model/serie.dart';
 import '../model/series.dart';
 
 class AddScreen extends StatefulWidget {

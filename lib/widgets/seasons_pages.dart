@@ -1,11 +1,9 @@
-import 'package:cached_network_image/cached_network_image.dart';
+import '../model/serie.dart';
 import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/widgets/adder_bar.dart';
 import 'package:dima_project/widgets/season_grid.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
-
-import '../model/serie.dart';
 
 class SeasonsPages extends StatefulWidget {
   final Serie serie;
@@ -42,7 +40,8 @@ class _SeasonsPagesState extends State<SeasonsPages> {
     return Column(
       children: [
         const Text("Seasons"),
-        SeasonGrid(widget.serie.seasons, updateSelectedCard, selectedCard),
+        SeasonGrid(widget.serie.seasonsSublisted(8)[0], updateSelectedCard,
+            selectedCard),
         //if I'm searching the series hide the tools to update watching episodes
         if (widget.serie.category != Categories.searched) ...[
           AdderBar(widget.serie, addEpisode, selectedCard),

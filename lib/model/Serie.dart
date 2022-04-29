@@ -49,6 +49,17 @@ class Serie {
     return 0;
   }
 
+  //returns a list containing lists containing max 8 seasons each. To be used
+  //in details page when building page view with inside grid views
+  seasonsSublisted(int chunkSize) {
+    List<List<Season>> result = [];
+    for (var i = 0; i < seasons.length; i += chunkSize) {
+      result.add(seasons.sublist(
+          i, i + chunkSize > seasons.length ? seasons.length : i + chunkSize));
+    }
+    return result;
+  }
+
   seasonWatchingEpisode(int seasonNumber) {
     return seasons.elementAt(seasonNumber).watched;
   }
