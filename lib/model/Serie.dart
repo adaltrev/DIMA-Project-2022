@@ -82,6 +82,7 @@ class Serie {
 
         //If all seasons complete, change category
         if (selectedSeason.number >= seasons.length) {
+          //TODO decide if keep this, because is i complete a serie by adding episodes and then remove episodes the series stays complete
           changeCategory(Categories.completed);
         }
         //if I'm not in the last season return index of the next season otherwise return the last season

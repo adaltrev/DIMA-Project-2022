@@ -22,6 +22,14 @@ class _SeasonsPagesState extends State<SeasonsPages> {
   int currentPage = 0;
   final PageController controller = PageController();
 
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance?.addPostFrameCallback((_) {
+      controller.jumpToPage(currentPage);
+    });
+  }
+
   getTotalPages() {
     int totalSeasons = widget.serie.seasons.length;
     num totalPages = totalSeasons % seasonsPerPage == 0
@@ -68,10 +76,10 @@ class _SeasonsPagesState extends State<SeasonsPages> {
     return Column(
       children: [
         const Text("Seasons"),
-        Container(
-          color: Colors.red,
-          height: 350,
-          width: 500,
+        SizedBox(
+          //if I have one row in the SeasonsGrid occupy only half of the space
+          height: widget.serie.seasons.length > 4 ? 37.h : 19.h,
+          width: 100.w,
           child: PageView(
               controller: controller,
               onPageChanged: (newPage) {
@@ -83,23 +91,27 @@ class _SeasonsPagesState extends State<SeasonsPages> {
                 ...widget.serie
                     .seasonsSublisted(seasonsPerPage)
                     .map((seasonsSublist) {
-                  return SeasonGrid(
-                      seasonsSublist, updateSelectedCard, selectedCard);
+                  return Padding(
+                    padding: EdgeInsets.only(left: 2.w),
+                    child: SeasonGrid(
+                        seasonsSublist, updateSelectedCard, selectedCard),
+                  );
                 }),
               ]),
         ),
-        Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-          ...getTotalPages().map((page) {
-            return Padding(
-              padding: EdgeInsets.symmetric(horizontal: 0.8.w),
-              child: Icon(
-                Icons.circle,
-                size: 2.w,
-                color: page == currentPage ? Colors.white : Colors.grey,
-              ),
-            );
-          }),
-        ]),
+        if (getTotalPages().length > 1)
+          Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+            ...getTotalPages().map((page) {
+              return Padding(
+                padding: EdgeInsets.symmetric(horizontal: 0.8.w),
+                child: Icon(
+                  Icons.circle,
+                  size: 2.w,
+                  color: page == currentPage ? Colors.white : Colors.grey,
+                ),
+              );
+            }),
+          ]),
 
         //if I'm searching the series hide the tools to update watching episodes
         if (widget.serie.category != Categories.searched) ...[

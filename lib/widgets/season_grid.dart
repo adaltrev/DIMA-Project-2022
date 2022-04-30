@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/season.dart';
 
@@ -18,8 +19,9 @@ class SeasonGrid extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 300,
+      height: 38.h,
       child: GridView.count(
+        physics: const NeverScrollableScrollPhysics(),
         crossAxisCount: 4,
         mainAxisSpacing: 10,
         crossAxisSpacing: 10,
