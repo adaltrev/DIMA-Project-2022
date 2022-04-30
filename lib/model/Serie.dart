@@ -81,11 +81,11 @@ class Serie {
         selectedSeason.watched = selectedSeason.episodes;
 
         //If all seasons complete, change category
-        if (selectedSeason.number >= totalSeasons) {
+        if (selectedSeason.number >= seasons.length) {
           changeCategory(Categories.completed);
         }
         //if I'm not in the last season return index of the next season otherwise return the last season
-        int increment = selectedSeason.number < totalSeasons ? 1 : 0;
+        int increment = selectedSeason.number < seasons.length ? 1 : 0;
         return selectedCardIndex + increment;
         //if I go lower than 0 for episodes
       } else if (selectedSeason.watched < 0) {

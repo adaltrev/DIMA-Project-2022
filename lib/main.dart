@@ -1,4 +1,3 @@
-import 'package:dima_project/asset/text_styles.dart';
 import 'package:dima_project/screens/add_series_screen.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:dima_project/screens/poster_screen.dart';

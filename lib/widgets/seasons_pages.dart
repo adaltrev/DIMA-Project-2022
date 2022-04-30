@@ -33,6 +33,7 @@ class _SeasonsPagesState extends State<SeasonsPages> {
 
   @override
   Widget build(BuildContext context) {
+    final PageController controller = PageController();
     if (firstBuild) {
       updateSelectedCard(widget.serie.currentlyWatchingSeason());
       firstBuild = false;
@@ -40,8 +41,17 @@ class _SeasonsPagesState extends State<SeasonsPages> {
     return Column(
       children: [
         const Text("Seasons"),
-        SeasonGrid(widget.serie.seasonsSublisted(8)[0], updateSelectedCard,
-            selectedCard),
+        Container(
+          color: Colors.red,
+          height: 400,
+          width: 500,
+          child: PageView(controller: controller, children: [
+            ...widget.serie.seasonsSublisted(8).map((seasonsSublist) {
+              return SeasonGrid(
+                  seasonsSublist, updateSelectedCard, selectedCard);
+            }),
+          ]),
+        ),
         //if I'm searching the series hide the tools to update watching episodes
         if (widget.serie.category != Categories.searched) ...[
           AdderBar(widget.serie, addEpisode, selectedCard),

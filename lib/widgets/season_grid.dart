@@ -26,7 +26,7 @@ class SeasonGrid extends StatelessWidget {
         childAspectRatio: 2 / 3,
         children: [
           ...seasons.map((season) {
-            var index = seasons.indexOf(season);
+            var index = season.number - 1;
             return GestureDetector(
               onTap: () {
                 updateSelectedCard(index);
