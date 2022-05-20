@@ -1,5 +1,9 @@
 import 'package:dima_project/model/season.dart';
 import 'package:flutter/cupertino.dart';
+import 'dart:async';
+import 'package:flutter/widgets.dart';
+import 'package:path/path.dart';
+import 'package:sqflite/sqflite.dart';
 
 import './categories.dart';
 import './serie.dart';

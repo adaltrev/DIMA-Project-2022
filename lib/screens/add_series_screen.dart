@@ -193,7 +193,7 @@ class _AddScreenState extends State<AddScreen> {
                   onPressed: serie.category == Categories.searched
                       ? null
                       : () => {
-                            serie.category = Categories.searched,
+                            serie.changeCategory(Categories.searched),
                             db.removeSeries(serie.id),
                             Navigator.pop(context)
                           },

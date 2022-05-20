@@ -74,7 +74,7 @@ searchByName(String query) async {
       }
     }
 
-    if (body['page'] == body['total_pages']) {
+    if (body['page'] == body['total_pages'] || body['page'] == 4) {
       return results;
     } else {
       int next = body['page'] + 1;

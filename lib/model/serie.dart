@@ -128,4 +128,21 @@ class Serie {
   void changeCategory(Categories status) {
     category = status;
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'id': id,
+      'name': name,
+      'posterPath': posterPath,
+      'genre': genre,
+      'country': country,
+      'overview': overview,
+      'beginDate': beginDate,
+      'endDate': endDate,
+      'status': status,
+      'totalSeasons': totalSeasons,
+      'totalEpisodes': totalEpisodes,
+      'category': category.toString()
+    };
+  }
 }
