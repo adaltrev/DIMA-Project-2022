@@ -85,3 +85,51 @@ Future<List<Serie>> loadData() async {
 
   return my_list;
 }
+
+//Update list data in local db, called when app is put in "Paused" state
+void commitData(List<Serie> series) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final status = prefs.getBool('exists') ?? false;
+
+  final database = openDatabase(
+    join(await getDatabasesPath(), 'my_list.db'),
+    version: 1,
+  );
+
+  final db = await database;
+
+  if (status == true) {
+    for (Serie item in series) {
+      db.insert('series', item.toMap(),
+          conflictAlgorithm: ConflictAlgorithm.replace);
+      for (Season item_s in item.seasons) {
+        Map<String, dynamic> s = item_s.toMap();
+        s['series_id'] = item.id;
+        db.insert('season', s, conflictAlgorithm: ConflictAlgorithm.replace);
+      }
+    }
+  }
+}
+
+//Remove a series and all its seasons from local db
+void deleteSeries(int id, int seasons) async {
+  WidgetsFlutterBinding.ensureInitialized();
+  final prefs = await SharedPreferences.getInstance();
+  final status = prefs.getBool('exists') ?? false;
+
+  final database = openDatabase(
+    join(await getDatabasesPath(), 'my_list.db'),
+    version: 1,
+  );
+
+  final db = await database;
+
+  if (status == true) {
+    for (int i = 1; i < seasons; i++) {
+      db.delete('season',
+          where: 'series_id = ? AND number = ?', whereArgs: [id, seasons]);
+    }
+    db.delete('series', where: 'id = ?', whereArgs: [id]);
+  }
+}

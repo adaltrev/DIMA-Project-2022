@@ -1,3 +1,4 @@
+import 'package:dima_project/db.dart';
 import 'package:dima_project/model/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -195,6 +196,7 @@ class _AddScreenState extends State<AddScreen> {
                       : () => {
                             serie.changeCategory(Categories.searched),
                             db.removeSeries(serie.id),
+                            deleteSeries(serie.id, serie.totalSeasons),
                             Navigator.pop(context)
                           },
                   child: serie.category == Categories.searched

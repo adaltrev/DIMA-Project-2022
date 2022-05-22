@@ -23,4 +23,14 @@ class Season {
   void complete() {
     watched = episodes;
   }
+
+  Map<String, dynamic> toMap() {
+    return {
+      'number': number,
+      'posterPath': posterPath,
+      'airDate': airDate,
+      'episodes': episodes,
+      'watched': watched,
+    };
+  }
 }
