@@ -7,4 +7,8 @@ extension CustomStyles on TextTheme {
 
   TextStyle get cardText2 =>
       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300);
+
+  TextStyle get modalSheetText => TextStyle(fontSize: 16.sp);
+
+  TextStyle get modalSheetTextBig => TextStyle(fontSize: 18.sp);
 }
