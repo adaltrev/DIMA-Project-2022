@@ -12,4 +12,7 @@ extension CustomStyles on TextTheme {
 
   TextStyle get modalSheetTextBig =>
       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
+
+  TextStyle get seasonPagesLabel =>
+      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
 }

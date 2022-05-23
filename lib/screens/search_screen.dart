@@ -17,7 +17,7 @@ import '../widgets/main_drawer.dart';
 import '../api.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
   static const routeName = '/search';
 
   @override
@@ -136,7 +136,17 @@ class _SearchScreenState extends State<SearchScreen> {
               ),
             );
           } else {
-            return const Center(child: Text("Aggiungere consigliati"));
+            return GestureDetector(
+                onTapDown: (_) {
+                  FocusManager.instance.primaryFocus?.unfocus();
+                },
+                //TODO remove container if implementing suggested part, is here because otherwise gesture detector wouldn't work
+                child: Container(
+                    color: Theme.of(context).canvasColor,
+                    height: double.infinity,
+                    width: double.infinity,
+                    child:
+                        const Center(child: Text("Aggiungere consigliati"))));
           }
         }()));
   }

@@ -1,3 +1,5 @@
+import 'package:dima_project/asset/text_styles.dart';
+
 import '../model/serie.dart';
 import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/widgets/adder_bar.dart';
@@ -75,7 +77,18 @@ class _SeasonsPagesState extends State<SeasonsPages> {
     }
     return Column(
       children: [
-        const Text("Seasons"),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 2.w, vertical: 3.w),
+          child: Row(
+            children: [
+              Text(
+                "Seasons",
+                style: Theme.of(context).textTheme.seasonPagesLabel,
+              ),
+              Spacer()
+            ],
+          ),
+        ),
         SizedBox(
           //if I have one row in the SeasonsGrid occupy only half of the space
           height: widget.serie.seasons.length > 4 ? 37.h : 19.h,
