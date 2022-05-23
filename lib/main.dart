@@ -38,7 +38,7 @@ class MyApp extends StatelessWidget {
         ),
         initialRoute: '/',
         routes: {
-          SearchScreen.routeName: (ctx) => const SearchScreen(),
+          SearchScreen.routeName: (ctx) => SearchScreen(),
           DetailsScreen.routeName: (ctx) => const DetailsScreen(),
           WatchingDetailsScreen.routeName: (ctx) =>
               const WatchingDetailsScreen(),

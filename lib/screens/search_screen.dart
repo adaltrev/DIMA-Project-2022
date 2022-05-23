@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../model/search_screen_status.dart';
 import '../model/season.dart';
 import '../model/serie.dart';
 import '../model/categories.dart';
@@ -16,7 +17,7 @@ import '../widgets/main_drawer.dart';
 import '../api.dart';
 
 class SearchScreen extends StatefulWidget {
-  const SearchScreen({Key? key}) : super(key: key);
+  SearchScreen({Key? key}) : super(key: key);
   static const routeName = '/search';
 
   @override
@@ -24,6 +25,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
+  SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
   String _query = "";
   late TextEditingController _controller;
@@ -41,6 +43,9 @@ class _SearchScreenState extends State<SearchScreen> {
   }
 
   void _updateSearch() async {
+    setState(() {
+      pageStatus = SearchScreenStatus.loading;
+    });
     List<TvSearch> jsonResults = await searchByName(_query);
     List<Result> results = [];
     for (var item in jsonResults) {
@@ -48,6 +53,9 @@ class _SearchScreenState extends State<SearchScreen> {
     }
     setState(() {
       _results = results;
+      setState(() {
+        pageStatus = SearchScreenStatus.showingList;
+      });
     });
   }
 
@@ -69,6 +77,9 @@ class _SearchScreenState extends State<SearchScreen> {
                         _updateSearch();
                         FocusManager.instance.primaryFocus?.unfocus();
                         _controller.clear();
+                        setState(() {
+                          pageStatus == SearchScreenStatus.showingList;
+                        });
                       },
                       icon: Icon(
                         Icons.search,
@@ -81,6 +92,9 @@ class _SearchScreenState extends State<SearchScreen> {
                 onSubmitted: (text) {
                   _updateSearch();
                   _controller.clear();
+                  setState(() {
+                    pageStatus == SearchScreenStatus.showingList;
+                  });
                 },
                 onChanged: (x) => _query = x,
               ),
@@ -88,27 +102,43 @@ class _SearchScreenState extends State<SearchScreen> {
           ),
         ),
         drawer: const MainDrawer(),
-        body: GestureDetector(
-          onTapDown: (_) {
-            FocusManager.instance.primaryFocus?.unfocus();
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Expanded(
-                child: GridView.count(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: (0.5).w,
-                  crossAxisSpacing: 2.w,
-                  childAspectRatio: 2 / 3,
-                  children: _results,
+        body: (() {
+          if (pageStatus == SearchScreenStatus.showingList) {
+            return GestureDetector(
+              onTapDown: (_) {
+                FocusManager.instance.primaryFocus?.unfocus();
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Expanded(
+                    child: GridView.count(
+                      crossAxisCount: 2,
+                      mainAxisSpacing: (0.5).w,
+                      crossAxisSpacing: 2.w,
+                      childAspectRatio: 2 / 3,
+                      children: _results,
+                    ),
+                  )
+                ],
+              ),
+            );
+          } else if (pageStatus == SearchScreenStatus.loading) {
+            return Center(
+              child: SizedBox(
+                width: 20.w,
+                height: 20.w,
+                child: CircularProgressIndicator(
+                  color: Theme.of(context).primaryColor,
                 ),
-              )
-            ],
-          ),
-        ));
+              ),
+            );
+          } else {
+            return const Center(child: Text("Aggiungere consigliati"));
+          }
+        }()));
   }
 }
 
