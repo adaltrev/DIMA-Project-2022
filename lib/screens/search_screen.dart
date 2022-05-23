@@ -6,6 +6,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/model/tv_search.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/season.dart';
 import '../model/serie.dart';
@@ -25,6 +26,19 @@ class SearchScreen extends StatefulWidget {
 class _SearchScreenState extends State<SearchScreen> {
   List<Result> _results = [];
   String _query = "";
+  late TextEditingController _controller;
+
+  @override
+  void initState() {
+    super.initState();
+    _controller = TextEditingController();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
 
   void _updateSearch() async {
     List<TvSearch> jsonResults = await searchByName(_query);
@@ -41,59 +55,57 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: const Text("Search screen"),
+          title: Container(
+            width: double.infinity,
+            height: 30.h,
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(5)),
+            child: Center(
+              child: TextField(
+                controller: _controller,
+                decoration: InputDecoration(
+                    suffixIcon: IconButton(
+                      onPressed: () {
+                        _updateSearch();
+                        FocusManager.instance.primaryFocus?.unfocus();
+                        _controller.clear();
+                      },
+                      icon: Icon(
+                        Icons.search,
+                        color: Theme.of(context).primaryColor,
+                      ),
+                      tooltip: 'Search TV series',
+                    ),
+                    hintText: 'Search TV series',
+                    border: InputBorder.none),
+                onSubmitted: (text) {
+                  _updateSearch();
+                  _controller.clear();
+                },
+                onChanged: (x) => _query = x,
+              ),
+            ),
+          ),
         ),
         drawer: const MainDrawer(),
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                const SizedBox(
-                  width: 20,
+        body: GestureDetector(
+          onTapDown: (_) {
+            FocusManager.instance.primaryFocus?.unfocus();
+          },
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Expanded(
+                child: GridView.count(
+                  crossAxisCount: 2,
+                  mainAxisSpacing: 10,
+                  crossAxisSpacing: 10,
+                  children: _results,
                 ),
-                Expanded(
-                    child: TextField(
-                        textAlign: TextAlign.start,
-                        showCursor: true,
-                        decoration: const InputDecoration(
-                            border: OutlineInputBorder(),
-                            labelText: "Search TV series"),
-                        onEditingComplete: _updateSearch,
-                        onChanged: (x) => _query = x,
-                        maxLength: 50,
-                        style: const TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
-                          fontWeight: FontWeight.w200,
-                        ))),
-                IconButton(
-                  onPressed: _updateSearch,
-                  icon: const Icon(Icons.search),
-                  tooltip: 'Search TV series',
-                )
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Expanded(
-              child: GridView.count(
-                crossAxisCount: 2,
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                children: _results,
-              ),
-            )
-          ],
+              )
+            ],
+          ),
         ));
   }
 }
