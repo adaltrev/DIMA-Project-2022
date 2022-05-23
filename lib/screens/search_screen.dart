@@ -115,9 +115,10 @@ class _SearchScreenState extends State<SearchScreen> {
                 children: [
                   Expanded(
                     child: GridView.count(
-                      crossAxisCount: 2,
-                      mainAxisSpacing: (0.5).w,
-                      crossAxisSpacing: 2.w,
+                      crossAxisCount: 3,
+                      //quando ne mostro 2
+                      //mainAxisSpacing: (0.5).w,
+                      //crossAxisSpacing: 2.w,
                       childAspectRatio: 2 / 3,
                       children: _results,
                     ),
