@@ -21,9 +21,13 @@ class _WishlistScreenState extends State<WishlistScreen> {
       alignment: Alignment.center,
       child: ListView(children: [
         ...wishlist.map((serie) {
-          return ListItem(serie);
+          return ListItem(serie, updateState);
         }).toList()
       ]),
     );
+  }
+
+  updateState() {
+    setState(() {});
   }
 }

@@ -5,19 +5,21 @@ import 'package:flutter/material.dart';
 import '../model/serie.dart';
 
 class ListItem extends StatelessWidget {
-  const ListItem(this.serie, {Key? key}) : super(key: key);
+  const ListItem(this.serie, this.updateState, {Key? key}) : super(key: key);
 
   final Serie serie;
+  final Function updateState;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.of(context).pushNamed(
-          DetailsScreen.routeName,
-          //TODO pass id
-          arguments: serie,
-        );
+        Navigator.of(context)
+            .pushNamed(
+              DetailsScreen.routeName,
+              arguments: serie,
+            )
+            .then((_) => updateState());
       },
       child: Card(
         child: ListTile(

@@ -15,13 +15,16 @@ class _CompletedScreenState extends State<CompletedScreen> {
   @override
   Widget build(BuildContext context) {
     final series = Provider.of<Series>(context);
-    final completed = series.completedSeries;
+    var completed = series.completedSeries;
+    updateState() {
+      setState(() {});
+    }
 
     return Container(
       alignment: Alignment.center,
       child: ListView(children: [
         ...completed.map((serie) {
-          return ListItem(serie);
+          return ListItem(serie, updateState);
         }).toList()
       ]),
     );
