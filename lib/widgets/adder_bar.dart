@@ -4,6 +4,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/serie.dart';
 
+//this widget is used to add episodes to a season
 class AdderBar extends StatelessWidget {
   final Serie serie;
   final Function addEpisode;
