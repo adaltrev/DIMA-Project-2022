@@ -62,6 +62,7 @@ class _SearchScreenState extends State<SearchScreen> {
             child: Center(
               child: TextField(
                 controller: _controller,
+                cursorColor: Theme.of(context).primaryColor,
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -99,8 +100,9 @@ class _SearchScreenState extends State<SearchScreen> {
               Expanded(
                 child: GridView.count(
                   crossAxisCount: 2,
-                  mainAxisSpacing: 10,
-                  crossAxisSpacing: 10,
+                  mainAxisSpacing: (0.5).w,
+                  crossAxisSpacing: 2.w,
+                  childAspectRatio: 2 / 3,
                   children: _results,
                 ),
               )
@@ -130,7 +132,7 @@ class Result extends StatelessWidget {
         height: 300,
         width: 200,
         imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
-        placeholder: (context, url) => CircularProgressIndicator(
+        placeholder: (context, url) => LinearProgressIndicator(
           color: Theme.of(context).primaryColor,
         ),
         errorWidget: (context, url, error) => const Icon(Icons.error),
