@@ -27,7 +27,7 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
     seriesStatus = getStatus(widget.serie.category);
     season = widget.serie.currentlyWatchingSeason() + 1;
     episode =
-        widget.serie.seasons[widget.serie.currentlyWatchingSeason()].number;
+        widget.serie.seasons[widget.serie.currentlyWatchingSeason()].watched;
     super.initState();
   }
 
@@ -112,7 +112,7 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                 ),
                 Row(
                   children: [
-                    Text("Watched Episodes",
+                    Text("Watched Episodes:",
                         style: Theme.of(context).textTheme.modalSheetText),
                     const Spacer(),
                     //Menù a tendina per l'episodio attuale (solo stato watching)

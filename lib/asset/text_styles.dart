@@ -10,5 +10,6 @@ extension CustomStyles on TextTheme {
 
   TextStyle get modalSheetText => TextStyle(fontSize: 16.sp);
 
-  TextStyle get modalSheetTextBig => TextStyle(fontSize: 18.sp);
+  TextStyle get modalSheetTextBig =>
+      TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
 }
