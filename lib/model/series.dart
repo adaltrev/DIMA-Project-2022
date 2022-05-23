@@ -194,4 +194,12 @@ class Series extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  Serie getSerieByID(int id) {
+    return _series.firstWhere((serie) => serie.id == id);
+  }
+
+  void notify() {
+    notifyListeners();
+  }
 }

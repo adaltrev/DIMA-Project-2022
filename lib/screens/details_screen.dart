@@ -7,6 +7,7 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/categories.dart';
 import '../model/series.dart';
+import '../widgets/custom_modal_bottom_sheet.dart';
 import 'add_series_screen.dart';
 import '../model/serie.dart';
 
@@ -24,6 +25,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
     final db = Provider.of<Series>(context);
 
     final serie = ModalRoute.of(context)!.settings.arguments as Serie;
+
     return Scaffold(
       appBar: AppBar(title: Text(serie.name)),
       body: SingleChildScrollView(
@@ -59,9 +61,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     Row(children: [
                       IconButton(
                           onPressed: () => {
-                                Navigator.pushNamed(
-                                    context, AddScreen.routeName,
-                                    arguments: serie)
+                                showModalBottomSheet<void>(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    return CustomBottomModalSheet(serie);
+                                  },
+                                ).then((_) => setState(() {}))
                               },
                           icon: serie.category == Categories.searched
                               ? const Icon(Icons.add_circle)
