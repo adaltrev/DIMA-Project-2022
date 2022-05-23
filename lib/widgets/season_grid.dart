@@ -47,7 +47,9 @@ class SeasonGrid extends StatelessWidget {
                             imageUrl: "http://image.tmdb.org/t/p/w185" +
                                 season.posterPath,
                             placeholder: (context, url) =>
-                                const CircularProgressIndicator(),
+                                CircularProgressIndicator(
+                              color: Theme.of(context).primaryColor,
+                            ),
                             errorWidget: (context, url, error) =>
                                 const Icon(Icons.error),
                             fit: BoxFit.cover,

@@ -18,7 +18,9 @@ class _PosterScreenState extends State<PosterScreen> {
         body: Center(
           child: CachedNetworkImage(
             imageUrl: "http://image.tmdb.org/t/p/w342" + poster,
-            placeholder: (context, url) => const CircularProgressIndicator(),
+            placeholder: (context, url) => CircularProgressIndicator(
+              color: Theme.of(context).primaryColor,
+            ),
             errorWidget: (context, url, error) => const Icon(Icons.error),
           ),
         ));

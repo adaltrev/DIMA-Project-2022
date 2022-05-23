@@ -44,8 +44,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   icon: CachedNetworkImage(
                     imageUrl:
                         "http://image.tmdb.org/t/p/w342" + serie.posterPath,
-                    placeholder: (context, url) =>
-                        const CircularProgressIndicator(),
+                    placeholder: (context, url) => CircularProgressIndicator(
+                      color: Theme.of(context).primaryColor,
+                    ),
                     errorWidget: (context, url, error) =>
                         const Icon(Icons.error),
                   ),

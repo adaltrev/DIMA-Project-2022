@@ -25,7 +25,9 @@ class ListItem extends StatelessWidget {
         child: ListTile(
           leading: CachedNetworkImage(
             imageUrl: "http://image.tmdb.org/t/p/w342" + serie.posterPath,
-            placeholder: (context, url) => CircularProgressIndicator(),
+            placeholder: (context, url) => CircularProgressIndicator(
+              color: Theme.of(context).primaryColor,
+            ),
             errorWidget: (context, url, error) => Icon(Icons.error),
           ),
           title: Text(serie.name),

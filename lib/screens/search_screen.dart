@@ -118,7 +118,9 @@ class Result extends StatelessWidget {
         height: 300,
         width: 200,
         imageUrl: "http://image.tmdb.org/t/p/w342" + posterPath,
-        placeholder: (context, url) => const CircularProgressIndicator(),
+        placeholder: (context, url) => CircularProgressIndicator(
+          color: Theme.of(context).primaryColor,
+        ),
         errorWidget: (context, url, error) => const Icon(Icons.error),
       ),
     );
