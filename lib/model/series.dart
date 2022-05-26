@@ -1,3 +1,4 @@
+import 'package:dima_project/db.dart';
 import 'package:dima_project/model/season.dart';
 import 'package:flutter/cupertino.dart';
 import 'dart:async';
@@ -9,12 +10,16 @@ import './categories.dart';
 import './serie.dart';
 
 class Series extends ChangeNotifier {
+  Series() {
+    initSeries();
+  }
+
   List<Season> seasons = [
     Season(number: 1, posterPath: "", airDate: "21/45/45", episodes: 15),
     Season(number: 2, posterPath: "", airDate: "21/45/2022", episodes: 23),
   ];
 
-  final List<Serie> _series = [
+  List<Serie> _series = [
     Serie(
         id: 11455,
         name: "Demon Slayer",
@@ -197,6 +202,11 @@ class Series extends ChangeNotifier {
 
   Serie getSerieByID(int id) {
     return _series.firstWhere((serie) => serie.id == id);
+  }
+
+  void initSeries() async {
+    _series = await loadData();
+    notify();
   }
 
   void notify() {

@@ -18,20 +18,17 @@ Future<List<Serie>> loadData() async {
 
   final database = openDatabase(
     join(await getDatabasesPath(), 'my_list.db'),
-    onCreate: (db, version) {
-      if (status == false) {
-        db.execute(
-          'CREATE TABLE series(id INTEGER PRIMARY KEY, name TEXT, posterPath TEXT, genre TEXT, country TEXT, overview TEXT, beginDate TEXT, endDate TEXT, status TEXT, totalSeasons INTEGER, totalEpisodes INTEGER, category TEXT)',
-        );
-        db.execute(
-            'CREATE TABLE season(series_id INTEGER NOT NULL, number INTEGER NOT NULL, posterPath TEXT, airDate TEXT, episodes INTEGER, watched INTEGER, PRIMARY KEY (id, number))');
-        prefs.setBool('exists', true);
-      }
-    },
-    version: 1,
   );
 
   final db = await database;
+  if (status == false) {
+    db.execute(
+      'CREATE TABLE series(id INTEGER PRIMARY KEY, name TEXT, posterPath TEXT, genre TEXT, country TEXT, overview TEXT, beginDate TEXT, endDate TEXT, status TEXT, totalSeasons INTEGER, totalEpisodes INTEGER, category TEXT)',
+    );
+    db.execute(
+        'CREATE TABLE season(series_id INTEGER NOT NULL, number INTEGER NOT NULL, posterPath TEXT, airDate TEXT, episodes INTEGER, watched INTEGER, PRIMARY KEY (series_id, number))');
+    prefs.setBool('exists', true);
+  }
 
   List<Serie> my_list = [];
   final List<Map<String, dynamic>> db_series = await db.query('series');
@@ -52,16 +49,16 @@ Future<List<Serie>> loadData() async {
 
     Categories category = Categories.watching;
     switch (item['category']) {
-      case "watching":
+      case "Categories.watching":
         category = Categories.watching;
         break;
-      case "completed":
+      case "Categories.completed":
         category = Categories.completed;
         break;
-      case "wishlist":
+      case "Categories.wishlist":
         category = Categories.wishlist;
         break;
-      case "searched":
+      case "Categories.searched":
         category = Categories.searched;
         break;
       default:
@@ -132,4 +129,10 @@ void deleteSeries(int id, int seasons) async {
     }
     db.delete('series', where: 'id = ?', whereArgs: [id]);
   }
+}
+
+void deleteDB() async {
+  deleteDatabase(join(await getDatabasesPath(), 'my_list.db'));
+  final prefs = await SharedPreferences.getInstance();
+  prefs.setBool('exists', false);
 }
