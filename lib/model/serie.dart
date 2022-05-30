@@ -2,7 +2,7 @@ import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/model/season.dart';
 import 'package:flutter/foundation.dart';
 
-import './categories.dart';
+//import './categories.dart';
 
 class Serie {
   final int id;
