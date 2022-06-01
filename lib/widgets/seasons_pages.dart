@@ -27,7 +27,7 @@ class _SeasonsPagesState extends State<SeasonsPages> {
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance?.addPostFrameCallback((_) {
+    WidgetsBinding.instance.addPostFrameCallback((_) {
       controller.jumpToPage(currentPage);
     });
   }

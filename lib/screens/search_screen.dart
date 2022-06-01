@@ -1,4 +1,5 @@
 import 'dart:ffi';
+import 'package:dima_project/db.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,7 +25,8 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchScreenState extends State<SearchScreen>
+    with WidgetsBindingObserver {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
   String _query = "";
@@ -32,14 +34,24 @@ class _SearchScreenState extends State<SearchScreen> {
 
   @override
   void initState() {
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
     _controller = TextEditingController();
   }
 
   @override
   void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
     _controller.dispose();
     super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state.toString());
+    if (state == AppLifecycleState.paused) {
+      commitData(Provider.of<Series>(context, listen: false).series);
+    }
   }
 
   void _updateSearch() async {

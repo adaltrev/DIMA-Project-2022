@@ -18,18 +18,19 @@ class ListScreen extends StatefulWidget {
 class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
   @override
   void initState() {
-    WidgetsBinding.instance?.addObserver(this);
+    WidgetsBinding.instance.addObserver(this);
     super.initState();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance?.removeObserver(this);
+    WidgetsBinding.instance.removeObserver(this);
     super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
+    print(state.toString());
     if (state == AppLifecycleState.paused) {
       commitData(Provider.of<Series>(context, listen: false).series);
     }
