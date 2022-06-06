@@ -33,7 +33,7 @@ class MainDrawer extends StatelessWidget {
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
             child: Text(
-              'Nome App?',
+              'SerieDB',
               style: TextStyle(
                   fontWeight: FontWeight.w900,
                   fontSize: 30,

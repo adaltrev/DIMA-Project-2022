@@ -29,6 +29,7 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.dark,
             canvasColor: Color.fromARGB(255, 18, 18, 18),
             cardColor: Color.fromARGB(255, 40, 40, 40),
+            secondaryHeaderColor: Color.fromARGB(255, 211, 210, 210),
             shadowColor: Colors.white),
         theme: ThemeData.light(),
         home: ResponsiveSizer(

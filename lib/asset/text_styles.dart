@@ -8,6 +8,12 @@ extension CustomStyles on TextTheme {
   //Text for watching card info
   TextStyle get cardText2 =>
       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w300);
+  //CardItem for watching and wishlist title
+  TextStyle get cardText3 =>
+      TextStyle(fontSize: 19.sp, fontWeight: FontWeight.w400);
+  //CardItem for watching and wishlist subtitle
+  TextStyle get cardText4 =>
+      TextStyle(fontSize: 16.sp, fontWeight: FontWeight.w300);
   //text for the modal sheet
   TextStyle get modalSheetText => TextStyle(fontSize: 16.sp);
 
