@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:dima_project/db.dart';
 import 'package:dima_project/model/season.dart';
 import 'package:flutter/cupertino.dart';
@@ -54,6 +56,10 @@ class Series extends ChangeNotifier {
 
   Serie getSerieByID(int id) {
     return _series.firstWhere((serie) => serie.id == id);
+  }
+
+  bool doesSerieExist(int id) {
+    return _series.where((serie) => serie.id == id).toList().isNotEmpty;
   }
 
   void initSeries() async {

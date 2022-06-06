@@ -173,10 +173,14 @@ class Result extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final db = Provider.of<Series>(context);
     Serie res;
     return IconButton(
       onPressed: (() async => {
-            res = await findById(id.toString()),
+            if (db.doesSerieExist(id))
+              {res = db.getSerieByID(id)}
+            else
+              {res = await findById(id.toString())},
             Navigator.pushNamed(context, DetailsScreen.routeName,
                 arguments: res)
           }),
