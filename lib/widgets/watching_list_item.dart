@@ -91,10 +91,6 @@ class WatchingListItem extends StatelessWidget {
                                     ),
                                   ],
                                 ),
-                                Text(
-                                  "Last seen: 3 days ago ",
-                                  style: Theme.of(context).textTheme.cardText2,
-                                ),
                                 Row(
                                   children: [
                                     const Spacer(),

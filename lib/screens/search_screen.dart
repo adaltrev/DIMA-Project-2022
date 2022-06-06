@@ -158,8 +158,7 @@ class _SearchScreenState extends State<SearchScreen>
                     color: Theme.of(context).canvasColor,
                     height: double.infinity,
                     width: double.infinity,
-                    child:
-                        const Center(child: Text("Aggiungere consigliati"))));
+                    child: const Center(child: Text("Search Your Series"))));
           }
         }()));
   }
