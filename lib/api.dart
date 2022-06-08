@@ -23,7 +23,7 @@ findById(String id) async {
   for (var item in body['seasons']) {
     if (item['season_number'] > 0) {
       if (item['poster_path'] == null) {
-        item['poster_path'] = "";
+        item['poster_path'] = body['poster_path'];
       }
       seasons.add(Season(
           number: item['season_number'],

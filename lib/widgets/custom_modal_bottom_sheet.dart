@@ -163,6 +163,10 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                               db.removeSeries(widget.serie.id),
                               deleteSeries(
                                   widget.serie.id, widget.serie.totalSeasons),
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Series removed from your list."),
+                              )),
                               Navigator.pop(context)
                             },
                     child: widget.serie.category == Categories.searched
@@ -176,7 +180,20 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                 TextButton(
                     onPressed: () => {
                           if (widget.serie.category == Categories.searched)
-                            {db.addSerie(widget.serie)},
+                            {
+                              db.addSerie(widget.serie),
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Series added to your list!"),
+                              )),
+                            }
+                          else
+                            {
+                              ScaffoldMessenger.of(context)
+                                  .showSnackBar(const SnackBar(
+                                content: Text("Series status updated."),
+                              )),
+                            },
                           if (seriesStatus == "Watching")
                             {
                               widget.serie.changeCategory(Categories.watching),

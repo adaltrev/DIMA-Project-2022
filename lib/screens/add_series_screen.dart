@@ -167,10 +167,15 @@ class _AddScreenState extends State<AddScreen> {
               TextButton(
                   onPressed: () => {
                         if (serie.category == Categories.searched)
-                          {db.addSerie(serie)},
+                          {
+                            db.addSerie(serie),
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(const SnackBar(
+                              content: Text("Series added to your list"),
+                            )),
+                          },
                         if (status == "Watching")
                           {
-                            //TODO buggato, da sistemare
                             serie.changeCategory(Categories.watching),
                             serie.completeSeasons(season - 1),
                             serie.addEpisodes(season, episode)
@@ -185,7 +190,7 @@ class _AddScreenState extends State<AddScreen> {
                             serie.changeCategory(Categories.wishlist),
                             serie.emptySeasons(-1)
                           },
-                        Navigator.pop(context)
+                        //Navigator.pop(context)
                       },
                   child: serie.category == Categories.searched
                       ? const Text("Add to list")
