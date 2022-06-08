@@ -120,7 +120,9 @@ class _SeasonsPagesState extends State<SeasonsPages> {
                 child: Icon(
                   Icons.circle,
                   size: 2.w,
-                  color: page == currentPage ? Colors.white : Colors.grey,
+                  color: page == currentPage
+                      ? Theme.of(context).primaryColorDark
+                      : Colors.grey,
                 ),
               );
             }),

@@ -59,7 +59,10 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                       value: seriesStatus,
                       icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style: Theme.of(context).textTheme.modalSheetText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .modalSheetText
+                          .copyWith(color: Theme.of(context).shadowColor),
                       underline: Container(
                         height: 2,
                         color: Theme.of(context).primaryColor,
@@ -88,7 +91,10 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                       value: season,
                       icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style: Theme.of(context).textTheme.modalSheetText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .modalSheetText
+                          .copyWith(color: Theme.of(context).shadowColor),
                       underline: Container(
                         height: 2,
                         color: Theme.of(context).primaryColor,
@@ -120,7 +126,10 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                       value: episode,
                       icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
-                      style: Theme.of(context).textTheme.modalSheetText,
+                      style: Theme.of(context)
+                          .textTheme
+                          .modalSheetText
+                          .copyWith(color: Theme.of(context).shadowColor),
                       underline: Container(
                         height: 2,
                         color: Theme.of(context).primaryColor,

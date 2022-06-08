@@ -44,8 +44,8 @@ class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
       child: Scaffold(
         appBar: AppBar(
           title: TabBar(
-            indicatorColor: Theme.of(context).primaryColor,
-            labelColor: Theme.of(context).primaryColor,
+            indicatorColor: Theme.of(context).errorColor,
+            labelColor: Theme.of(context).errorColor,
             tabs: <Widget>[
               Tab(
                 text: 'Watching',

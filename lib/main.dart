@@ -26,12 +26,24 @@ class MyApp extends StatelessWidget {
         themeMode: ThemeMode.dark,
         darkTheme: ThemeData(
             primaryColor: Colors.teal,
+            //the highlighted dot in the season pages
+            primaryColorDark: Colors.white,
             brightness: Brightness.dark,
             canvasColor: Color.fromARGB(255, 18, 18, 18),
             cardColor: Color.fromARGB(255, 40, 40, 40),
             secondaryHeaderColor: Color.fromARGB(255, 211, 210, 210),
+            //color for the tab bar
+            errorColor: Colors.teal,
+            //used for the bottom nav modal sheet
             shadowColor: Colors.white),
-        theme: ThemeData.light(),
+        theme: ThemeData(
+          brightness: Brightness.light,
+          //color for the tab bar
+          errorColor: Colors.white,
+          //used for the bottom nav modal sheet
+          shadowColor: Color.fromARGB(255, 103, 103, 103),
+          secondaryHeaderColor: Color.fromARGB(255, 25, 25, 25),
+        ),
         home: ResponsiveSizer(
           builder: (context, orientation, screenType) {
             return const ListScreen();

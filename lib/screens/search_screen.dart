@@ -82,7 +82,7 @@ class _SearchScreenState extends State<SearchScreen>
             child: Center(
               child: TextField(
                 controller: _controller,
-                cursorColor: Theme.of(context).primaryColor,
+                cursorColor: Theme.of(context).errorColor,
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {
@@ -95,11 +95,13 @@ class _SearchScreenState extends State<SearchScreen>
                       },
                       icon: Icon(
                         Icons.search,
-                        color: Theme.of(context).primaryColor,
+                        color: Theme.of(context).errorColor,
                       ),
                       tooltip: 'Search TV series',
                     ),
                     hintText: 'Search TV series',
+                    hintStyle:
+                        TextStyle(color: Color.fromARGB(255, 241, 240, 240)),
                     border: InputBorder.none),
                 onSubmitted: (text) {
                   _updateSearch();
