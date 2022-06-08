@@ -1,3 +1,4 @@
+import 'package:dima_project/db.dart';
 import 'package:dima_project/model/categories.dart';
 import 'package:dima_project/model/season.dart';
 import 'package:flutter/foundation.dart';
@@ -87,13 +88,16 @@ class Serie {
         }
         //if I'm not in the last season return index of the next season otherwise return the last season
         int increment = selectedSeason.number < seasons.length ? 1 : 0;
+        commitSeries(this);
         return selectedCardIndex + increment;
         //if I go lower than 0 for episodes
       } else if (selectedSeason.watched < 0) {
         selectedSeason.watched = 0;
         int decrement = selectedSeason.number > 1 ? 1 : 0;
+        commitSeries(this);
         return selectedCardIndex - decrement;
       } else {
+        commitSeries(this);
         return selectedCardIndex;
       }
     } else {
@@ -105,6 +109,7 @@ class Serie {
         selectedSeason.watched += quantity;
         completeSeasons(selectedCardIndex);
       }
+      commitSeries(this);
       return selectedCardIndex;
     }
   }
@@ -115,6 +120,7 @@ class Serie {
         season.empty();
       }
     });
+    commitSeries(this);
   }
 
   void completeSeasons(int selectedCardIndex) {
@@ -123,10 +129,12 @@ class Serie {
         season.complete();
       }
     });
+    commitSeries(this);
   }
 
   void changeCategory(Categories status) {
     category = status;
+    commitSeries(this);
   }
 
   Map<String, dynamic> toMap() {

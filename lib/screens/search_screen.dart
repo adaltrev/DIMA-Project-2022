@@ -25,8 +25,7 @@ class SearchScreen extends StatefulWidget {
   State<SearchScreen> createState() => _SearchScreenState();
 }
 
-class _SearchScreenState extends State<SearchScreen>
-    with WidgetsBindingObserver {
+class _SearchScreenState extends State<SearchScreen> {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
   String _query = "";
@@ -34,24 +33,14 @@ class _SearchScreenState extends State<SearchScreen>
 
   @override
   void initState() {
-    WidgetsBinding.instance.addObserver(this);
     super.initState();
     _controller = TextEditingController();
   }
 
   @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     _controller.dispose();
     super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
   }
 
   void _updateSearch() async {

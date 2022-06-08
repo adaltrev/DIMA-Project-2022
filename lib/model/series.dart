@@ -43,6 +43,7 @@ class Series extends ChangeNotifier {
 
   void addSerie(Serie serie) {
     _series.add(serie);
+    commitSeries(serie);
     notifyListeners();
   }
 

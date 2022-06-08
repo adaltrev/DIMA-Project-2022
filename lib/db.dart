@@ -83,8 +83,7 @@ Future<List<Serie>> loadData() async {
   return my_list;
 }
 
-//Update list data in local db, called when app is put in "Paused" state
-void commitData(List<Serie> series) async {
+void commitSeries(Serie serie) async {
   WidgetsFlutterBinding.ensureInitialized();
   final prefs = await SharedPreferences.getInstance();
   final status = prefs.getBool('exists') ?? false;
@@ -97,14 +96,12 @@ void commitData(List<Serie> series) async {
   final db = await database;
 
   if (status == true) {
-    for (Serie item in series) {
-      db.insert('series', item.toMap(),
-          conflictAlgorithm: ConflictAlgorithm.replace);
-      for (Season item_s in item.seasons) {
-        Map<String, dynamic> s = item_s.toMap();
-        s['series_id'] = item.id;
-        db.insert('season', s, conflictAlgorithm: ConflictAlgorithm.replace);
-      }
+    db.insert('series', serie.toMap(),
+        conflictAlgorithm: ConflictAlgorithm.replace);
+    for (Season item in serie.seasons) {
+      Map<String, dynamic> s = item.toMap();
+      s['series_id'] = serie.id;
+      db.insert('season', s, conflictAlgorithm: ConflictAlgorithm.replace);
     }
   }
 }

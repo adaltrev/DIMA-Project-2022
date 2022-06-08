@@ -15,27 +15,7 @@ class ListScreen extends StatefulWidget {
   State<ListScreen> createState() => _ListScreenState();
 }
 
-class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
-  }
-
+class _ListScreenState extends State<ListScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(

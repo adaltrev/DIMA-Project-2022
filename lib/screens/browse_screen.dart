@@ -29,29 +29,8 @@ class BrowseScreen extends StatefulWidget {
   State<BrowseScreen> createState() => _BrowseScreenState();
 }
 
-class _BrowseScreenState extends State<BrowseScreen>
-    with WidgetsBindingObserver {
+class _BrowseScreenState extends State<BrowseScreen> {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
-
-  @override
-  void initState() {
-    WidgetsBinding.instance.addObserver(this);
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
-    super.dispose();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
-  }
 
   @override
   Widget build(BuildContext context) {

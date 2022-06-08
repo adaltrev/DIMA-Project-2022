@@ -26,8 +26,7 @@ class LatestScreen extends StatefulWidget {
   State<LatestScreen> createState() => _LatestScreenState();
 }
 
-class _LatestScreenState extends State<LatestScreen>
-    with WidgetsBindingObserver {
+class _LatestScreenState extends State<LatestScreen> {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
 
@@ -35,14 +34,6 @@ class _LatestScreenState extends State<LatestScreen>
   void initState() {
     _updateSearch();
     super.initState();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
   }
 
   void _updateSearch() async {

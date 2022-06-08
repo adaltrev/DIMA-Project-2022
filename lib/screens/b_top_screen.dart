@@ -2,19 +2,11 @@ import 'dart:ffi';
 import 'package:dima_project/db.dart';
 import 'package:dima_project/screens/details_screen.dart';
 import 'package:dima_project/screens/search_screen.dart';
-import 'package:http/http.dart' as http;
-
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:dima_project/model/tv_search.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/search_screen_status.dart';
-import '../model/season.dart';
-import '../model/serie.dart';
-import '../model/categories.dart';
-import '../model/series.dart';
 import '../widgets/main_drawer.dart';
 import '../api.dart';
 
@@ -26,7 +18,7 @@ class TopScreen extends StatefulWidget {
   State<TopScreen> createState() => _TopScreenState();
 }
 
-class _TopScreenState extends State<TopScreen> with WidgetsBindingObserver {
+class _TopScreenState extends State<TopScreen> {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
 
@@ -34,14 +26,6 @@ class _TopScreenState extends State<TopScreen> with WidgetsBindingObserver {
   void initState() {
     _updateSearch();
     super.initState();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
   }
 
   void _updateSearch() async {

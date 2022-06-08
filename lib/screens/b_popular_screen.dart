@@ -26,8 +26,7 @@ class PopularScreen extends StatefulWidget {
   State<PopularScreen> createState() => _PopularScreenState();
 }
 
-class _PopularScreenState extends State<PopularScreen>
-    with WidgetsBindingObserver {
+class _PopularScreenState extends State<PopularScreen> {
   SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
   List<Result> _results = [];
 
@@ -35,14 +34,6 @@ class _PopularScreenState extends State<PopularScreen>
   void initState() {
     _updateSearch();
     super.initState();
-  }
-
-  @override
-  void didChangeAppLifecycleState(AppLifecycleState state) {
-    print(state.toString());
-    if (state == AppLifecycleState.paused) {
-      commitData(Provider.of<Series>(context, listen: false).series);
-    }
   }
 
   void _updateSearch() async {
