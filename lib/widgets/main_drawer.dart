@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../db.dart';
 import '../model/season.dart';
 import '../model/serie.dart';
+import '../screens/browse_screen.dart';
 import '../screens/search_screen.dart';
 
 class MainDrawer extends StatelessWidget {
@@ -49,6 +50,9 @@ class MainDrawer extends StatelessWidget {
           buildListTile('Search', () {
             Navigator.of(context).pushReplacementNamed(SearchScreen.routeName);
           }),
+          buildListTile('Browse', () {
+            Navigator.of(context).pushReplacementNamed(BrowseScreen.routeName);
+          })
           /*buildListTile('DB test', () async {
             commitData(Provider.of<Series>(context, listen: false).series);
             Future<List<Serie>> resp = loadData();

@@ -90,3 +90,25 @@ searchByName(String query) async {
     }
   }
 }
+
+browse(String choice) async {
+  var response = await http.get(Uri.parse(endPoint +
+      "tv/" +
+      choice +
+      "?api_key=" +
+      apiKey +
+      "&language=en-US&page=1&query="));
+
+  dynamic body = json.decode(response.body);
+
+  List<TvSearch> results = <TvSearch>[];
+
+  while (true) {
+    for (var item in body['results']) {
+      if (item['poster_path'] != null) {
+        results.add(TvSearch(item['id'], item['poster_path'], item['name']));
+      }
+    }
+    return results;
+  }
+}

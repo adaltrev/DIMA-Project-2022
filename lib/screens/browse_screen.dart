@@ -1,21 +1,38 @@
+import 'dart:ffi';
 import 'package:flutter/material.dart';
+import 'package:dima_project/db.dart';
+import 'package:dima_project/screens/details_screen.dart';
+import 'package:http/http.dart' as http;
+
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dima_project/model/tv_search.dart';
+
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
+import '../model/search_screen_status.dart';
+import '../model/season.dart';
+import '../model/serie.dart';
+import '../model/categories.dart';
 import '../model/series.dart';
-import './completed_screen.dart';
-import './wishlist_screen.dart';
-import './watching_screen.dart';
 import '../widgets/main_drawer.dart';
-import '../db.dart';
+import '../api.dart';
+import 'b_latest_screen.dart';
+import 'b_popular_screen.dart';
+import 'b_top_screen.dart';
 
-class ListScreen extends StatefulWidget {
-  const ListScreen({Key? key}) : super(key: key);
+class BrowseScreen extends StatefulWidget {
+  const BrowseScreen({Key? key}) : super(key: key);
+  static const routeName = '/browse';
 
   @override
-  State<ListScreen> createState() => _ListScreenState();
+  State<BrowseScreen> createState() => _BrowseScreenState();
 }
 
-class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
+class _BrowseScreenState extends State<BrowseScreen>
+    with WidgetsBindingObserver {
+  SearchScreenStatus pageStatus = SearchScreenStatus.showingSuggested;
+
   @override
   void initState() {
     WidgetsBinding.instance.addObserver(this);
@@ -48,13 +65,13 @@ class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
             labelColor: Theme.of(context).primaryColor,
             tabs: const <Widget>[
               Tab(
-                text: 'Watching',
+                text: 'Popular',
               ),
               Tab(
-                text: 'Completed',
+                text: 'Top Rated',
               ),
               Tab(
-                text: 'Wishlist',
+                text: 'Latest',
               ),
             ],
           ),
@@ -62,9 +79,9 @@ class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
         drawer: const MainDrawer(),
         body: const TabBarView(
           children: <Widget>[
-            WatchingScreen(),
-            CompletedScreen(),
-            WishlistScreen(),
+            PopularScreen(),
+            TopScreen(),
+            LatestScreen(),
           ],
         ),
       ),
