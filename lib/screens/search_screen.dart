@@ -72,6 +72,7 @@ class _SearchScreenState extends State<SearchScreen> {
               child: TextField(
                 controller: _controller,
                 cursorColor: Theme.of(context).errorColor,
+                style: const TextStyle(color: Colors.white),
                 decoration: InputDecoration(
                     suffixIcon: IconButton(
                       onPressed: () {
