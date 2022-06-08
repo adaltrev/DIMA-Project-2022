@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import '../db.dart';
 import '../model/season.dart';
 import '../model/serie.dart';
+import '../model/theme_model.dart';
 import '../screens/browse_screen.dart';
 import '../screens/search_screen.dart';
 
@@ -25,6 +26,7 @@ class MainDrawer extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeModel>(context);
     return Drawer(
       child: Column(
         children: <Widget>[
@@ -33,12 +35,23 @@ class MainDrawer extends StatelessWidget {
             width: double.infinity,
             padding: const EdgeInsets.all(20),
             alignment: Alignment.centerLeft,
-            child: Text(
-              'SerieDB',
-              style: TextStyle(
-                  fontWeight: FontWeight.w900,
-                  fontSize: 30,
-                  color: Theme.of(context).primaryColor),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  'SerieDB',
+                  style: TextStyle(
+                      fontWeight: FontWeight.w900,
+                      fontSize: 30,
+                      color: Theme.of(context).primaryColor),
+                ),
+                IconButton(
+                    icon: Icon(
+                        theme.isDark ? Icons.nightlight_round : Icons.wb_sunny),
+                    onPressed: () {
+                      theme.isDark ? theme.isDark = false : theme.isDark = true;
+                    }),
+              ],
             ),
           ),
           const SizedBox(

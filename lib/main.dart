@@ -8,6 +8,7 @@ import 'package:provider/provider.dart';
 
 import 'package:responsive_sizer/responsive_sizer.dart';
 import './screens/search_screen.dart';
+import 'model/theme_model.dart';
 import 'screens/home_screen.dart';
 import './model/series.dart';
 
@@ -21,46 +22,52 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-      create: (context) => Series(),
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        themeMode: ThemeMode.dark,
-        darkTheme: ThemeData(
-            primaryColor: Colors.teal,
-            //the highlighted dot in the season pages
-            primaryColorDark: Colors.white,
-            brightness: Brightness.dark,
-            canvasColor: Color.fromARGB(255, 18, 18, 18),
-            cardColor: Color.fromARGB(255, 40, 40, 40),
-            secondaryHeaderColor: Color.fromARGB(255, 211, 210, 210),
-            //color for the tab bar
-            errorColor: Colors.teal,
-            //used for the bottom nav modal sheet
-            shadowColor: Colors.white),
-        theme: ThemeData(
-          brightness: Brightness.light,
-          //color for the tab bar
-          errorColor: Colors.white,
-          //used for the bottom nav modal sheet
-          shadowColor: Color.fromARGB(255, 103, 103, 103),
-          secondaryHeaderColor: Color.fromARGB(255, 25, 25, 25),
-        ),
-        home: ResponsiveSizer(
-          builder: (context, orientation, screenType) {
-            return const ListScreen();
-          },
-        ),
-        initialRoute: '/',
-        routes: {
-          SearchScreen.routeName: (ctx) => SearchScreen(),
-          DetailsScreen.routeName: (ctx) => const DetailsScreen(),
-          WatchingDetailsScreen.routeName: (ctx) =>
-              const WatchingDetailsScreen(),
-          PosterScreen.routeName: (ctx) => const PosterScreen(),
-          AddScreen.routeName: (ctx) => const AddScreen(),
-          BrowseScreen.routeName: (ctx) => const BrowseScreen(),
-        },
-      ),
-    );
+        create: (context) => Series(),
+        child: ChangeNotifierProvider(
+          create: (_) => ThemeModel(),
+          child: Consumer<ThemeModel>(
+              builder: (context, ThemeModel themeNotifier, child) {
+            return MaterialApp(
+              title: 'Flutter Demo',
+              themeMode:
+                  themeNotifier.isDark ? ThemeMode.dark : ThemeMode.light,
+              darkTheme: ThemeData(
+                  primaryColor: Colors.teal,
+                  //the highlighted dot in the season pages
+                  primaryColorDark: Colors.white,
+                  brightness: Brightness.dark,
+                  canvasColor: Color.fromARGB(255, 18, 18, 18),
+                  cardColor: Color.fromARGB(255, 40, 40, 40),
+                  secondaryHeaderColor: Color.fromARGB(255, 211, 210, 210),
+                  //color for the tab bar
+                  errorColor: Colors.teal,
+                  //used for the bottom nav modal sheet
+                  shadowColor: Colors.white),
+              theme: ThemeData(
+                brightness: Brightness.light,
+                //color for the tab bar
+                errorColor: Colors.white,
+                //used for the bottom nav modal sheet
+                shadowColor: Color.fromARGB(255, 103, 103, 103),
+                secondaryHeaderColor: Color.fromARGB(255, 25, 25, 25),
+              ),
+              home: ResponsiveSizer(
+                builder: (context, orientation, screenType) {
+                  return const ListScreen();
+                },
+              ),
+              initialRoute: '/',
+              routes: {
+                SearchScreen.routeName: (ctx) => SearchScreen(),
+                DetailsScreen.routeName: (ctx) => const DetailsScreen(),
+                WatchingDetailsScreen.routeName: (ctx) =>
+                    const WatchingDetailsScreen(),
+                PosterScreen.routeName: (ctx) => const PosterScreen(),
+                AddScreen.routeName: (ctx) => const AddScreen(),
+                BrowseScreen.routeName: (ctx) => const BrowseScreen(),
+              },
+            );
+          }),
+        ));
   }
 }

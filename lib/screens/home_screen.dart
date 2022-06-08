@@ -59,7 +59,7 @@ class _ListScreenState extends State<ListScreen> with WidgetsBindingObserver {
             ],
           ),
         ),
-        drawer: const MainDrawer(),
+        drawer: MainDrawer(),
         body: const TabBarView(
           children: <Widget>[
             WatchingScreen(),

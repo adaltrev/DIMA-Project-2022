@@ -115,7 +115,7 @@ class _SearchScreenState extends State<SearchScreen>
             ),
           ),
         ),
-        drawer: const MainDrawer(),
+        drawer: MainDrawer(),
         body: (() {
           if (pageStatus == SearchScreenStatus.showingList) {
             return GestureDetector(

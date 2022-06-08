@@ -61,8 +61,8 @@ class _BrowseScreenState extends State<BrowseScreen>
       child: Scaffold(
         appBar: AppBar(
           title: TabBar(
-            indicatorColor: Theme.of(context).primaryColor,
-            labelColor: Theme.of(context).primaryColor,
+            indicatorColor: Theme.of(context).errorColor,
+            labelColor: Theme.of(context).errorColor,
             tabs: const <Widget>[
               Tab(
                 text: 'Popular',
@@ -76,7 +76,7 @@ class _BrowseScreenState extends State<BrowseScreen>
             ],
           ),
         ),
-        drawer: const MainDrawer(),
+        drawer: MainDrawer(),
         body: const TabBarView(
           children: <Widget>[
             PopularScreen(),

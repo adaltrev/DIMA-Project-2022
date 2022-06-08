@@ -65,7 +65,7 @@ class _LatestScreenState extends State<LatestScreen>
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        drawer: const MainDrawer(),
+        drawer: MainDrawer(),
         body: (() {
           if (pageStatus == SearchScreenStatus.showingList) {
             return GestureDetector(
