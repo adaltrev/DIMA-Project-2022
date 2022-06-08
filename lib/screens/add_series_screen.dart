@@ -190,7 +190,7 @@ class _AddScreenState extends State<AddScreen> {
                             serie.changeCategory(Categories.wishlist),
                             serie.emptySeasons(-1)
                           },
-                        //Navigator.pop(context)
+                        Navigator.pop(context)
                       },
                   child: serie.category == Categories.searched
                       ? const Text("Add to list")
