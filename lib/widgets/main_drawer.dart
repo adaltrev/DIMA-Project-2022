@@ -39,7 +39,7 @@ class MainDrawer extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Text(
-                  'SerieDB',
+                  'My TV Tracker',
                   style: TextStyle(
                       fontWeight: FontWeight.w900,
                       fontSize: 30,

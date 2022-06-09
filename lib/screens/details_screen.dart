@@ -8,7 +8,6 @@ import 'package:responsive_sizer/responsive_sizer.dart';
 import '../model/categories.dart';
 import '../model/series.dart';
 import '../widgets/custom_modal_bottom_sheet.dart';
-import 'add_series_screen.dart';
 import '../model/serie.dart';
 
 class DetailsScreen extends StatefulWidget {
