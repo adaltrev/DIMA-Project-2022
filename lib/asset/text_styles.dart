@@ -22,4 +22,6 @@ extension CustomStyles on TextTheme {
 
   TextStyle get seasonPagesLabel =>
       TextStyle(fontSize: 18.sp, fontWeight: FontWeight.w400);
+
+  TextStyle get tabBarLabel => TextStyle(fontSize: 15.sp);
 }

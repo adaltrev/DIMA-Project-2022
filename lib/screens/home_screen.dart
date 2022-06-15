@@ -1,5 +1,7 @@
+import 'package:dima_project/asset/text_styles.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../model/series.dart';
 import './completed_screen.dart';
@@ -16,25 +18,40 @@ class ListScreen extends StatefulWidget {
 }
 
 class _ListScreenState extends State<ListScreen> {
+  final _scaffoldKey = new GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
       length: 3,
       // initialIndex: 0,
       child: Scaffold(
+        key: _scaffoldKey,
         appBar: AppBar(
+          leading: IconButton(
+            icon: Icon(Icons.menu, size: 7.w),
+            onPressed: () => _scaffoldKey.currentState!.openDrawer(),
+          ),
           title: TabBar(
             indicatorColor: Theme.of(context).errorColor,
             labelColor: Theme.of(context).errorColor,
             tabs: <Widget>[
               Tab(
-                text: 'Watching',
+                child: Text(
+                  'Watching',
+                  style: Theme.of(context).textTheme.tabBarLabel,
+                ),
               ),
               Tab(
-                text: 'Completed',
+                child: Text(
+                  'Completed',
+                  style: Theme.of(context).textTheme.tabBarLabel,
+                ),
               ),
               Tab(
-                text: 'Wishlist',
+                child: Text(
+                  'Wishlist',
+                  style: Theme.of(context).textTheme.tabBarLabel,
+                ),
               ),
             ],
           ),

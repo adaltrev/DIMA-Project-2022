@@ -1,6 +1,7 @@
 import 'package:dima_project/model/series.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:responsive_sizer/responsive_sizer.dart';
 
 import '../db.dart';
 import '../model/season.dart';
@@ -46,11 +47,13 @@ class MainDrawer extends StatelessWidget {
                       color: Theme.of(context).primaryColor),
                 ),
                 IconButton(
-                    icon: Icon(
-                        theme.isDark ? Icons.nightlight_round : Icons.wb_sunny),
-                    onPressed: () {
-                      theme.isDark ? theme.isDark = false : theme.isDark = true;
-                    }),
+                  icon: Icon(
+                      theme.isDark ? Icons.nightlight_round : Icons.wb_sunny),
+                  onPressed: () {
+                    theme.isDark ? theme.isDark = false : theme.isDark = true;
+                  },
+                  iconSize: 8.w,
+                ),
               ],
             ),
           ),
