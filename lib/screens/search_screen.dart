@@ -50,7 +50,10 @@ class _SearchScreenState extends State<SearchScreen> {
     List<TvSearch> jsonResults = await searchByName(_query);
     List<Result> results = [];
     for (var item in jsonResults) {
-      results.add(Result(id: item.id, posterPath: item.posterPath));
+      results.add(Result(
+          key: ValueKey(item.id.toString()),
+          id: item.id,
+          posterPath: item.posterPath));
     }
     setState(() {
       _results = results;
@@ -145,7 +148,6 @@ class _SearchScreenState extends State<SearchScreen> {
                 onTapDown: (_) {
                   FocusManager.instance.primaryFocus?.unfocus();
                 },
-                //TODO remove container if implementing suggested part, is here because otherwise gesture detector wouldn't work
                 child: Container(
                     color: Theme.of(context).canvasColor,
                     height: double.infinity,

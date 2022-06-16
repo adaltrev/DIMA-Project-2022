@@ -41,6 +41,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         arguments: serie.posterPath)
                   },
                   icon: CachedNetworkImage(
+                    key: const ValueKey("detailsPoster"),
                     imageUrl:
                         "http://image.tmdb.org/t/p/w342" + serie.posterPath,
                     placeholder: (context, url) => CircularProgressIndicator(

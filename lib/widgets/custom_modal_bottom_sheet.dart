@@ -56,6 +56,7 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                     ),
                     const Spacer(),
                     DropdownButton<String>(
+                      key: const ValueKey("statusDropdown"),
                       value: seriesStatus,
                       icon: const Icon(Icons.arrow_downward),
                       elevation: 16,
@@ -226,6 +227,7 @@ class _CustomBottomModalSheetState extends State<CustomBottomModalSheet> {
                     child: widget.serie.category == Categories.searched
                         ? Text(
                             "Add to list",
+                            key: const ValueKey("addToList"),
                             style: Theme.of(context)
                                 .textTheme
                                 .modalSheetTextBig
