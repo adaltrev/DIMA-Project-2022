@@ -106,8 +106,8 @@ class _SeasonsPagesState extends State<SeasonsPages> {
                     .map((seasonsSublist) {
                   return Padding(
                     padding: EdgeInsets.only(left: 2.w),
-                    child: SeasonGrid(
-                        seasonsSublist, updateSelectedCard, selectedCard),
+                    child: SeasonGrid(seasonsSublist, updateSelectedCard,
+                        selectedCard, widget.serie.category),
                   );
                 }),
               ]),

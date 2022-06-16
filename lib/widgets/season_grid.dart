@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:dima_project/model/categories.dart';
 import 'package:flutter/material.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 
@@ -7,12 +8,14 @@ import '../model/season.dart';
 class SeasonGrid extends StatelessWidget {
   final List<Season> seasons;
   final Function updateSelectedCard;
+  final Categories status;
   var selectedCard;
 
   SeasonGrid(
     this.seasons,
     this.updateSelectedCard,
-    this.selectedCard, {
+    this.selectedCard,
+    this.status, {
     Key? key,
   }) : super(key: key);
 
@@ -74,7 +77,8 @@ class SeasonGrid extends StatelessWidget {
                   Text(
                     "Season ${index + 1}",
                     style: TextStyle(
-                        color: selectedCard == index
+                        color: selectedCard == index &&
+                                status == Categories.watching
                             ? Theme.of(context).primaryColor
                             : Theme.of(context).shadowColor),
                   )
