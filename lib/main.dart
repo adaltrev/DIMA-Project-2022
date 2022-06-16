@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
                 //color for the tab bar
                 errorColor: Colors.white,
                 //used for the bottom nav modal sheet
-                shadowColor: Color.fromARGB(255, 103, 103, 103),
+                shadowColor: Color.fromARGB(255, 78, 78, 78),
                 secondaryHeaderColor: Color.fromARGB(255, 25, 25, 25),
               ),
               home: ResponsiveSizer(

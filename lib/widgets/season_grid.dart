@@ -57,8 +57,9 @@ class SeasonGrid extends StatelessWidget {
                         ),
                         if (season.completed()) ...[
                           Positioned.fill(
-                            child: Container(
-                              color: Colors.black38,
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(7),
+                              child: Container(color: Colors.black38),
                             ),
                           ),
                           const Icon(
@@ -75,7 +76,7 @@ class SeasonGrid extends StatelessWidget {
                     style: TextStyle(
                         color: selectedCard == index
                             ? Theme.of(context).primaryColor
-                            : Colors.white),
+                            : Theme.of(context).shadowColor),
                   )
                 ],
               ),
