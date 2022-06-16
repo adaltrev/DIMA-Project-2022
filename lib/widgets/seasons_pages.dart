@@ -129,7 +129,7 @@ class _SeasonsPagesState extends State<SeasonsPages> {
           ]),
 
         //if I'm searching the series hide the tools to update watching episodes
-        if (widget.serie.category != Categories.searched) ...[
+        if (widget.serie.category == Categories.watching) ...[
           AdderBar(widget.serie, addEpisode, selectedCard),
           SizedBox(
             height: 5.h,
